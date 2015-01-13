@@ -13,6 +13,7 @@ Pelin käyttäjiä ovat peliä pelaavat henkilöt.
 
 Aloitusnäkymästä pelaaja voi käynnistää pelin ja pelata sitä niin kauan kunnes kuolee, jolloin peli siirtyy takaisin aloitusnäkymään. Aloitusnäkymästä voi myös mennä Asetukset-valikkoon, jos peliin sellainen tehdään.
 
+Pelatessaan pelaaja voi ampua Zombeja hiiren vasemmalla painikkeella, tähdätä hiirellä sekä ohjata hahmoa WASD-kirjaimilla. Ampumistaan Zombeista pelaaja saa rahaa, jolla hän voi päivittää aseitaan.
 
 ## Rakenne
 
