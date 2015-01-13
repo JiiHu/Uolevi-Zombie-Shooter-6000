@@ -1,5 +1,5 @@
 
-package com.zombie6000.zombie;
+package jiihu.zombie;
 
 public class Main {
     
