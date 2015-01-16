@@ -1,4 +1,4 @@
-package jiihu.zombie.domain;
+package jiihu.zombie;
 
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.Texture;
@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 
-public class Test implements ApplicationListener {
+public class Game implements ApplicationListener {
 	Texture texture;
 	SpriteBatch batch;
 	float elapsed;
