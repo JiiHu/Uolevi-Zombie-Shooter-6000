@@ -1,5 +1,5 @@
 
-package jiihu.zombie.domain;
+package zombie.domain;
 
 
 
@@ -7,7 +7,7 @@ public abstract class GameObject {
     
     protected int x;
     protected int y;
-    protected String spriteFile;
+    protected SpriteImage sprite;
     
     public GameObject() {
         
@@ -29,13 +29,14 @@ public abstract class GameObject {
         this.y = y;
     }
 
-    public String getSpriteFile() {
-        return spriteFile;
+    public SpriteImage getSprite() {
+        return sprite;
     }
 
-    public void setSpriteFile(String spriteFile) {
-        this.spriteFile = spriteFile;
+    public void setSprite(SpriteImage sprite) {
+        this.sprite = sprite;
     }
+
     
     
 }

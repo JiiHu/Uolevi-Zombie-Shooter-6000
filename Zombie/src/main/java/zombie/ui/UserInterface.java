@@ -1,4 +1,4 @@
-package jiihu.zombie.ui;
+package zombie.ui;
 
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.Texture;

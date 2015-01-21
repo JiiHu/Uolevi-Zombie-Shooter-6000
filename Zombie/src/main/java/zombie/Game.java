@@ -1,7 +1,7 @@
 
-package jiihu.zombie;
+package zombie;
 
-import jiihu.zombie.ui.UserInterface;
+import zombie.ui.UserInterface;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
