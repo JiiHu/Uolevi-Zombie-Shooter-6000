@@ -20,7 +20,6 @@ public class ActorController {
         } else if (direction.equals("RIGHT")) {
             actor.moveRight();
         }
-        
     }
     
 }

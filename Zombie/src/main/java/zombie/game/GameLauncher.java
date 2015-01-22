@@ -1,5 +1,5 @@
 
-package zombie;
+package zombie.game;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
@@ -15,7 +15,7 @@ public class GameLauncher {
     }
     
     public void start() {
-        Game game = new Game(width, height);
+        ZombieGame game = new ZombieGame(width, height);
         
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
         configureUI(config);

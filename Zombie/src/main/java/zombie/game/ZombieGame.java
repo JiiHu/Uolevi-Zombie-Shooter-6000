@@ -1,19 +1,19 @@
 
 
-package zombie;
+package zombie.game;
 
 import zombie.domain.Player;
 import zombie.logic.ActorController;
 
 
-public class Game {
+public class ZombieGame {
     
     private Player player;
     private int width;
     private int height;
     private ActorController actorController;
     
-    public Game(int width, int height) {
+    public ZombieGame(int width, int height) {
         this.player = new Player(width/2, height/2, "assets/player.png");
         this.actorController = new ActorController();
     }

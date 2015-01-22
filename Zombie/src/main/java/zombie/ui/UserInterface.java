@@ -8,7 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import java.awt.event.KeyEvent;
-import zombie.Game;
+import zombie.game.ZombieGame;
 
 public class UserInterface implements ApplicationListener {
 
@@ -16,12 +16,12 @@ public class UserInterface implements ApplicationListener {
     SpriteBatch batch;
     float elapsed;
 
-    private Game game;
+    private ZombieGame game;
     private Texture background;
     private Sprite player;
     private InputHandler input;
 
-    public UserInterface(Game game) {
+    public UserInterface(ZombieGame game) {
         this.game = game;
         this.input = new InputHandler(game.getPlayer(), game.getActorController());
     }
@@ -53,11 +53,13 @@ public class UserInterface implements ApplicationListener {
 
         drawBackground();
         drawTexture(testTexture);
-
-        player.rotate((float) 45.0);
-        batch.draw(player, game.getPlayer().getX(), game.getPlayer().getY());
+        drawSprite(player, game.getPlayer().getX(), game.getPlayer().getY());
 
         batch.end();
+    }
+
+    private void drawSprite(Sprite sprite, int x, int y) {
+        batch.draw(sprite, x, y);
     }
 
 
