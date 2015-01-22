@@ -1,19 +1,16 @@
 
+
 package zombie;
 
-import zombie.ui.UserInterface;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import zombie.domain.Player;
+
 
 public class Game {
     
-    public Game() {
-        
-    }
+    private Player player;
     
-    public void start() {
-        LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-	LwjglApplication app = new LwjglApplication(new UserInterface(), config);
+    public Game() {
+        this.player = new Player();
     }
     
 }

@@ -1,8 +1,6 @@
 
 package zombie.domain;
 
-
-
 public class GameObject {
     
     protected int x;
@@ -36,8 +34,6 @@ public class GameObject {
     public void setSprite(SpriteImage sprite) {
         this.sprite = sprite;
     }
-    
-
     
     
 }

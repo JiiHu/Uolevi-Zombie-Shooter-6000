@@ -5,16 +5,22 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import zombie.Game;
 
 public class UserInterface implements ApplicationListener {
 
     Texture texture;
     SpriteBatch batch;
     float elapsed;
+    private Game game;
+    
+    public UserInterface(Game game) {
+        this.game = game;
+    }
 
     @Override
     public void create() {
-        texture = new Texture(Gdx.files.internal("assets/libgdx-logo.png"));
+        texture = new Texture(Gdx.files.internal("assets/player.png"));
         batch = new SpriteBatch();
     }
 

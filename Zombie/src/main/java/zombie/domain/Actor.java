@@ -5,9 +5,12 @@ public class Actor extends GameObject {
     
     protected int hp;
     protected int maxHp;
+    protected int speed;
     
     public Actor() {
-        
+        this.maxHp = 100;
+        this.hp = this.maxHp;
+        this.speed = 5;
     }
 
     public int getHp() {
@@ -44,6 +47,14 @@ public class Actor extends GameObject {
         if (hp > maxHp) {
             hp = maxHp;
         }
+    }
+    
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 
     

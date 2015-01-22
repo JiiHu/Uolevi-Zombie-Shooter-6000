@@ -1,11 +1,6 @@
 
 package zombie.domain;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
-
 public class Player extends Actor {
     
     private Weapon weapon1;

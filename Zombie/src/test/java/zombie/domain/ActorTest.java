@@ -7,12 +7,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import zombie.domain.Actor;
 
 
 public class ActorTest {
     
-    Actor person;
+    Actor actor;
     
     public ActorTest() {
     }
@@ -27,8 +26,8 @@ public class ActorTest {
     
     @Before
     public void setUp() {
-        person = new Actor();
-        person.setMaxHp(50);
+        actor = new Actor();
+        actor.setMaxHp(50);
     }
     
     @After
@@ -37,81 +36,81 @@ public class ActorTest {
     
     @Test
     public void getHpReturnsCorrectValue() {
-        assertEquals(0, person.getHp());
-        person.setHp(10);
-        assertEquals(10, person.getHp());
-        person.setHp(15);
-        assertEquals(15, person.getHp());
+        assertEquals(100, actor.getHp());
+        actor.setHp(10);
+        assertEquals(10, actor.getHp());
+        actor.setHp(15);
+        assertEquals(15, actor.getHp());
     }
     
     @Test
     public void maxHpSetsAndGetsCorrectValue() {
-        person.setMaxHp(100);
-        assertEquals(100, person.getMaxHp());
-        person.setMaxHp(50);
-        assertEquals(50, person.getMaxHp());
+        actor.setMaxHp(100);
+        assertEquals(100, actor.getMaxHp());
+        actor.setMaxHp(50);
+        assertEquals(50, actor.getMaxHp());
     }
     
     @Test
     public void hpSetsAndGetsRightValue() {
-        person.setMaxHp(100);
-        person.setHp(50);
-        assertEquals(50, person.getHp());
-        person.setHp(100);
-        assertEquals(100, person.getHp());
+        actor.setMaxHp(100);
+        actor.setHp(50);
+        assertEquals(50, actor.getHp());
+        actor.setHp(100);
+        assertEquals(100, actor.getHp());
     }
     
     @Test
     public void cantSetNegativeMaxHp() {
-        person.setMaxHp(100);
-        person.setMaxHp(-1);
-        assertEquals(100, person.getMaxHp());
+        actor.setMaxHp(100);
+        actor.setMaxHp(-1);
+        assertEquals(100, actor.getMaxHp());
     }
     
     @Test
     public void cantSetNegativeHp() {
-        person.setHp(-1);
-        assertEquals(0, person.getHp());
+        actor.setHp(-1);
+        assertEquals(100, actor.getHp());
     }
     
     @Test
     public void cantSetHpOverMaxHp() {
-        person.setHp(30);
-        person.setHp(51);
-        assertEquals(30, person.getHp());
-        person.setHp(40);
-        assertEquals(40, person.getHp());
+        actor.setHp(30);
+        actor.setHp(51);
+        assertEquals(30, actor.getHp());
+        actor.setHp(40);
+        assertEquals(40, actor.getHp());
     }
     
     @Test
     public void decreaseHpWorksCorrectly() {
-        person.setHp(30);
-        person.decreaseHp(10);
-        assertEquals(20, person.getHp());
-        person.decreaseHp(8);
-        assertEquals(12, person.getHp());
+        actor.setHp(30);
+        actor.decreaseHp(10);
+        assertEquals(20, actor.getHp());
+        actor.decreaseHp(8);
+        assertEquals(12, actor.getHp());
     }
     
     @Test
     public void increaseHpWorksCorrectly() {
-        person.setHp(10);
-        person.increaseHp(10);
-        assertEquals(20, person.getHp());
-        person.increaseHp(8);
-        assertEquals(28, person.getHp());
+        actor.setHp(10);
+        actor.increaseHp(10);
+        assertEquals(20, actor.getHp());
+        actor.increaseHp(8);
+        assertEquals(28, actor.getHp());
     }
     
     @Test
     public void increaseHpWontIncreaseOverMaxHp() {
-        person.setHp(45);
-        person.increaseHp(10);
-        assertEquals(50, person.getHp());
+        actor.setHp(45);
+        actor.increaseHp(10);
+        assertEquals(50, actor.getHp());
     }
     @Test
     public void decreaseHpWontDecreaseUnderZero() {
-        person.setHp(10);
-        person.decreaseHp(15);
-        assertEquals(0, person.getHp());
+        actor.setHp(10);
+        actor.decreaseHp(15);
+        assertEquals(0, actor.getHp());
     }
 
 }
