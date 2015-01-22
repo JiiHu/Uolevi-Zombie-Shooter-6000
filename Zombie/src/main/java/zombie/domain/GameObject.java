@@ -3,7 +3,7 @@ package zombie.domain;
 
 
 
-public abstract class GameObject {
+public class GameObject {
     
     protected int x;
     protected int y;
@@ -36,6 +36,7 @@ public abstract class GameObject {
     public void setSprite(SpriteImage sprite) {
         this.sprite = sprite;
     }
+    
 
     
     

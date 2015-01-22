@@ -1,3 +1,5 @@
+package zombie.domain;
+
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -5,14 +7,14 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import zombie.domain.Person;
+import zombie.domain.Actor;
 
 
-public class PersonTest {
+public class ActorTest {
     
-    Person person;
+    Actor person;
     
-    public PersonTest() {
+    public ActorTest() {
     }
     
     @BeforeClass
@@ -25,7 +27,7 @@ public class PersonTest {
     
     @Before
     public void setUp() {
-        person = new Person();
+        person = new Actor();
         person.setMaxHp(50);
     }
     

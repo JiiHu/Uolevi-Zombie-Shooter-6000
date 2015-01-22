@@ -1,12 +1,12 @@
 
 package zombie.domain;
 
-public class Person extends GameObject {
+public class Actor extends GameObject {
     
     protected int hp;
     protected int maxHp;
     
-    public Person() {
+    public Actor() {
         
     }
 
