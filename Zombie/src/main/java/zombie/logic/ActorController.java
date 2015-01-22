@@ -10,7 +10,16 @@ public class ActorController {
         
     }
     
-    public void moveActor(Actor actor, int x, int y) {
+    public void moveActor(Actor actor, String direction) {
+        if (direction.equals("UP")) {
+            actor.moveUp();
+        } else if (direction.equals("DOWN")) {
+            actor.moveDown();
+        } else if (direction.equals("LEFT")) {
+            actor.moveLeft();
+        } else if (direction.equals("RIGHT")) {
+            actor.moveRight();
+        }
         
     }
     

@@ -6,8 +6,16 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
 public class GameLauncher {
     
+    private int width;
+    private int height;
+    
+    public GameLauncher(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
+    
     public void start() {
-        Game game = new Game();
+        Game game = new Game(width, height);
         
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
         configureUI(config);
@@ -16,8 +24,9 @@ public class GameLauncher {
     
     public void configureUI(LwjglApplicationConfiguration config) {
         config.title = "Super Uolevi Zombie Shooter 6000 HD";
-        config.width = 1280;
-        config.height = 720;
+        config.resizable = false;
+        config.width = this.width;
+        config.height = this.height;
     }
     
 }

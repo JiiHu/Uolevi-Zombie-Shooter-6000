@@ -6,6 +6,7 @@ public class Actor extends GameObject {
     protected int hp;
     protected int maxHp;
     protected int speed;
+    protected int direction;
     
     public Actor() {
         this.maxHp = 100;
@@ -56,6 +57,30 @@ public class Actor extends GameObject {
     public void setSpeed(int speed) {
         this.speed = speed;
     }
+    
+    public void moveUp() {
+        this.y += speed;
+    }
+    
+    public void moveDown() {
+        this.y -= speed;
+    }
+    public void moveRight() {
+        this.x += speed;
+    }
+    public void moveLeft() {
+        this.x -= speed;
+    }
+
+    public int getDirection() {
+        return direction;
+    }
+
+    public void setDirection(int direction) {
+        this.direction = direction;
+    }
+    
+    
 
     
 }

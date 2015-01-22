@@ -5,27 +5,40 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import java.awt.event.KeyEvent;
 import zombie.Game;
 
 public class UserInterface implements ApplicationListener {
 
-    Texture texture;
+    Texture testTexture;
     SpriteBatch batch;
     float elapsed;
+
     private Game game;
-    
+    private Texture background;
+    private Sprite player;
+    private InputHandler input;
+
     public UserInterface(Game game) {
         this.game = game;
+        this.input = new InputHandler(game.getPlayer(), game.getActorController());
     }
 
     @Override
     public void create() {
-        texture = new Texture(Gdx.files.internal("assets/player.png"));
+        testTexture = new Texture(Gdx.files.internal("assets/zombie-1.png"));
+        background = new Texture(Gdx.files.internal("assets/background.jpg"));
+
+        createPlayer();
+
         batch = new SpriteBatch();
     }
 
-    @Override
-    public void resize(int width, int height) {
+    private void createPlayer() {
+        player = new Sprite(new Texture(Gdx.files.internal(game.getPlayer().getTexture())));
+        player.setOrigin(player.getWidth() / 2, player.getHeight() / 2);
     }
 
     @Override
@@ -33,9 +46,31 @@ public class UserInterface implements ApplicationListener {
         elapsed += Gdx.graphics.getDeltaTime();
         Gdx.gl.glClearColor(255, 255, 255, 0);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
+        
+        input.lookForInput();
+
         batch.begin();
-        batch.draw(texture, 100 + 100 * (float) Math.cos(elapsed), 100 + 25 * (float) Math.sin(elapsed));
+
+        drawBackground();
+        drawTexture(testTexture);
+
+        player.rotate((float) 45.0);
+        batch.draw(player, game.getPlayer().getX(), game.getPlayer().getY());
+
         batch.end();
+    }
+
+
+    private void drawBackground() {
+        batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+    }
+
+    public void drawTexture(Texture texture) {
+        batch.draw(texture, 100 + 100 * (float) Math.cos(elapsed), 100 + 25 * (float) Math.sin(elapsed));
+    }
+
+    @Override
+    public void resize(int width, int height) {
     }
 
     @Override
@@ -49,4 +84,5 @@ public class UserInterface implements ApplicationListener {
     @Override
     public void dispose() {
     }
+
 }

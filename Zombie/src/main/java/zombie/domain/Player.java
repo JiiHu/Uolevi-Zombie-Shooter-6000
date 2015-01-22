@@ -1,13 +1,18 @@
 
 package zombie.domain;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+
 public class Player extends Actor {
     
     private Weapon weapon1;
     private Weapon weapon2;
     
-    public Player() {
-        
+    public Player(int x, int y, String filename) {
+        this.x = x;
+        this.y = y;
+        this.texture = filename;
     }
 
     public Weapon getWeapon1() {

@@ -1,11 +1,13 @@
 
 package zombie.domain;
 
+import com.badlogic.gdx.graphics.Texture;
+
 public class GameObject {
     
     protected int x;
     protected int y;
-    protected SpriteImage sprite;
+    protected String texture;
     
     public GameObject() {
         
@@ -27,13 +29,15 @@ public class GameObject {
         this.y = y;
     }
 
-    public SpriteImage getSprite() {
-        return sprite;
+    public String getTexture() {
+        return texture;
     }
 
-    public void setSprite(SpriteImage sprite) {
-        this.sprite = sprite;
+    public void setTexture(String texture) {
+        this.texture = texture;
     }
+    
+    
     
     
 }
