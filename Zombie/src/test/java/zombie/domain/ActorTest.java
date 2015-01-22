@@ -61,6 +61,14 @@ public class ActorTest {
     }
     
     @Test
+    public void speedSetsAndGetsRightValue() {
+        actor.setSpeed(2);
+        assertEquals(2, actor.getSpeed());
+        actor.setSpeed(8);
+        assertEquals(8, actor.getSpeed());
+    }
+    
+    @Test
     public void cantSetNegativeMaxHp() {
         actor.setMaxHp(100);
         actor.setMaxHp(-1);

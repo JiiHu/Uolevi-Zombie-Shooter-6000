@@ -47,5 +47,13 @@ public class GameObjectTest {
         go.setY(5);
         assertEquals(5, go.getY());
     }
+    
+    @Test
+    public void textureSetsAndGetsCorrectly() {
+        go.setTexture("jee");
+        assertEquals("jee", go.getTexture());
+        go.setTexture("lol");
+        assertEquals("lol", go.getTexture());
+    }
 
 }
