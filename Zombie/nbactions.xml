@@ -35,7 +35,7 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:exec</goal>
             </goals>
             <properties>
-                <exec.args>-classpath %classpath zombie.Main</exec.args>
+                <exec.args>-classpath %classpath zombie.game.Main</exec.args>
                 <exec.executable>java</exec.executable>
             </properties>
         </action>
