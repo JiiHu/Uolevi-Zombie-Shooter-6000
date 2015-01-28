@@ -55,5 +55,20 @@ public class GameObjectTest {
         go.setTexture("lol");
         assertEquals("lol", go.getTexture());
     }
+    
+    @Test
+    public void spriteSizesGetAndSetWork() {
+        go.setSpriteHeight(10);
+        assertEquals(10, go.getSpriteHeight());
+        go.setSpriteHeight(5);
+        assertEquals(5, go.getSpriteHeight());
+ 
+        go.setSpriteWidth(10);
+        assertEquals(10, go.getSpriteWidth());
+        go.setSpriteWidth(5);
+        assertEquals(5, go.getSpriteWidth());
+    }
+    
+    
 
 }
