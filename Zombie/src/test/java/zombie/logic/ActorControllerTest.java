@@ -11,6 +11,7 @@ import static org.junit.Assert.*;
 import zombie.domain.Actor;
 import zombie.domain.Direction;
 import zombie.domain.Map;
+import zombie.domain.Tile;
 import zombie.logic.ActorController;
 
 public class ActorControllerTest {
@@ -44,7 +45,7 @@ public class ActorControllerTest {
     @After
     public void tearDown() {
     }
-
+    
 
     @Test
     public void directionUpWorks() {

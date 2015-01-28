@@ -8,6 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import java.awt.event.KeyEvent;
+import zombie.domain.Zombie;
 import zombie.game.ZombieGame;
 
 public class UserInterface implements ApplicationListener {
@@ -20,6 +21,7 @@ public class UserInterface implements ApplicationListener {
     private Texture background;
     private Sprite player;
     private InputHandler input;
+    
 
     public UserInterface(ZombieGame game) {
         this.game = game;
@@ -48,11 +50,16 @@ public class UserInterface implements ApplicationListener {
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
         
         input.lookForInput();
-
+        
+        game.play();
+        
         batch.begin();
 
         drawBackground();
-        drawTexture(testTexture);
+        
+        for (Zombie zombie : game.getZombieAI().getZombies()) {
+            drawTexture(testTexture, zombie.getX(), zombie.getY());
+        }
         drawSprite(player, game.getPlayer().getX(), game.getPlayer().getY());
 
         batch.end();
@@ -67,8 +74,8 @@ public class UserInterface implements ApplicationListener {
         batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
 
-    public void drawTexture(Texture texture) {
-        batch.draw(texture, 100 + 100 * (float) Math.cos(elapsed), 100 + 25 * (float) Math.sin(elapsed));
+    public void drawTexture(Texture texture, int x, int y) {
+        batch.draw(texture, x, y);
     }
 
     @Override

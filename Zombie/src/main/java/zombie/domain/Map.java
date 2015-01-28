@@ -37,14 +37,6 @@ public class Map {
         return height;
     }
 
-    public Tile[][] getTiles() {
-        return tiles;
-    }
-
-    public void setTiles(Tile[][] tiles) {
-        this.tiles = tiles;
-    }
-
     public int getDivider() {
         return divider;
     }

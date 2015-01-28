@@ -40,11 +40,17 @@ public class ZombieGameTest {
     }
     
     @Test
-    public void getWidthAndGetHeightWorks() {
-        int width = game.getWidth();
-        assertEquals(100, width);
-        int height = game.getHeight();
-        assertEquals(100, height);
+    public void playAddsZombies() {
+        assertEquals(8, game.getZombieAI().getZombies().size());
+        for (int i = 0; i < 99; i++) {
+            game.play();
+        }
+        assertEquals(0, game.getZombieAI().getZombies().size());
+        game.play();
+        assertEquals(1, game.getZombieAI().getZombies().size());
     }
-
+    
+    
+    
+    
 }

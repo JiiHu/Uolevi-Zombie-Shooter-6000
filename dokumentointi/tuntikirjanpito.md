@@ -12,3 +12,6 @@
 
 ### To 22.1
 - 6h Luokkia ja testausta
+
+### Ke 28.1.
+- 6h Toiminnallisuuden tekemistä, testausta
