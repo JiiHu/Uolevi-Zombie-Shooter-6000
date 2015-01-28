@@ -18,6 +18,8 @@ public class ZombieGame {
     private Map map;
     
     public ZombieGame(int width, int height) {
+        this.width = width;
+        this.height = height;
         this.player = new Player(width/2, height/2, "assets/player.png");
         this.map = new Map(width, height);
         this.mapController = new MapController(map);
@@ -36,26 +38,12 @@ public class ZombieGame {
         return width;
     }
 
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
     public int getHeight() {
         return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
     }
 
     public ActorController getActorController() {
         return actorController;
     }
-
-    public void setActorController(ActorController actorController) {
-        this.actorController = actorController;
-    }
-    
-    
     
 }

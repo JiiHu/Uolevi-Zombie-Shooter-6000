@@ -9,11 +9,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class GameTest {
+public class ZombieGameTest {
     
     ZombieGame game;
 
-    public GameTest() {
+    public ZombieGameTest() {
     }
 
     @BeforeClass
@@ -37,6 +37,14 @@ public class GameTest {
     public void playerGoesCenterOfTheScreen() {
         assertEquals(50, game.getPlayer().getX());
         assertEquals(50, game.getPlayer().getY());
+    }
+    
+    @Test
+    public void getWidthAndGetHeightWorks() {
+        int width = game.getWidth();
+        assertEquals(100, width);
+        int height = game.getHeight();
+        assertEquals(100, height);
     }
 
 }

@@ -8,6 +8,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import zombie.domain.Player;
 import static org.junit.Assert.*;
+import zombie.domain.Actor;
 import zombie.domain.Direction;
 import zombie.domain.Map;
 import zombie.logic.ActorController;
@@ -17,7 +18,7 @@ public class ActorControllerTest {
     ActorController ac;
     MapController mc;
     Map map;
-    Player p;
+    Actor person;
     int speed;
 
     public ActorControllerTest() {
@@ -36,8 +37,8 @@ public class ActorControllerTest {
         map = new Map(1280, 720);
         mc = new MapController(map);
         ac = new ActorController(mc);
-        p = new Player(50, 50, "test");
-        speed = p.getSpeed();
+        person = new Player(50, 50, "test");
+        speed = person.getSpeed();
     }
 
     @After
@@ -47,11 +48,11 @@ public class ActorControllerTest {
 
     @Test
     public void directionUpWorks() {
-        int startX = p.getX();
-        int startY = p.getY();
-        ac.moveActor(p, Direction.UP);
-        boolean boolX = p.getX() == startX;
-        boolean boolY = p.getY() == startY+speed;
+        int startX = person.getX();
+        int startY = person.getY();
+        ac.moveActor(person, Direction.UP);
+        boolean boolX = person.getX() == startX;
+        boolean boolY = person.getY() == startY+speed;
         
         assertEquals(boolX, true);
         assertEquals(boolY, true);
@@ -59,11 +60,11 @@ public class ActorControllerTest {
     
     @Test
     public void directionDownWorks() {
-        int startX = p.getX();
-        int startY = p.getY();
-        ac.moveActor(p, Direction.DOWN);
-        boolean boolX = p.getX() == startX;
-        boolean boolY = p.getY() == startY-speed;
+        int startX = person.getX();
+        int startY = person.getY();
+        ac.moveActor(person, Direction.DOWN);
+        boolean boolX = person.getX() == startX;
+        boolean boolY = person.getY() == startY-speed;
         
         assertEquals(boolX, true);
         assertEquals(boolY, true);
@@ -71,11 +72,11 @@ public class ActorControllerTest {
     
     @Test
     public void directionLeftWorks() {
-        int startX = p.getX();
-        int startY = p.getY();
-        ac.moveActor(p, Direction.LEFT);
-        boolean boolX = p.getX() == startX-speed;
-        boolean boolY = p.getY() == startY;
+        int startX = person.getX();
+        int startY = person.getY();
+        ac.moveActor(person, Direction.LEFT);
+        boolean boolX = person.getX() == startX-speed;
+        boolean boolY = person.getY() == startY;
         
         assertEquals(boolX, true);
         assertEquals(boolY, true);
@@ -83,14 +84,15 @@ public class ActorControllerTest {
     
     @Test
     public void directionRightWorks() {
-        int startX = p.getX();
-        int startY = p.getY();
-        ac.moveActor(p, Direction.RIGHT);
-        boolean boolX = p.getX() == startX+speed;
-        boolean boolY = p.getY() == startY;
+        int startX = person.getX();
+        int startY = person.getY();
+        ac.moveActor(person, Direction.RIGHT);
+        boolean boolX = person.getX() == startX+speed;
+        boolean boolY = person.getY() == startY;
         
         assertEquals(boolX, true);
         assertEquals(boolY, true);
     }
+    
 
 }
