@@ -2,8 +2,10 @@
 
 package zombie.game;
 
+import zombie.domain.Map;
 import zombie.domain.Player;
 import zombie.logic.ActorController;
+import zombie.logic.MapController;
 
 
 public class ZombieGame {
@@ -12,10 +14,14 @@ public class ZombieGame {
     private int width;
     private int height;
     private ActorController actorController;
+    private MapController mapController;
+    private Map map;
     
     public ZombieGame(int width, int height) {
         this.player = new Player(width/2, height/2, "assets/player.png");
-        this.actorController = new ActorController();
+        this.map = new Map(width, height);
+        this.mapController = new MapController(map);
+        this.actorController = new ActorController(mapController);
     }
 
     public Player getPlayer() {

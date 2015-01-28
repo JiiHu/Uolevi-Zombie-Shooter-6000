@@ -7,12 +7,22 @@ public class Actor extends GameObject {
     protected int maxHp;
     protected int speed;
     protected int direction;
+    protected Tile currentTile;
     
     public Actor() {
         this.maxHp = 100;
         this.hp = this.maxHp;
         this.speed = 1;
     }
+
+    public Tile getCurrentTile() {
+        return currentTile;
+    }
+
+    public void setCurrentTile(Tile currentTile) {
+        this.currentTile = currentTile;
+    }
+    
 
     public int getHp() {
         return hp;

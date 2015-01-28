@@ -8,11 +8,31 @@ public class GameObject {
     protected int x;
     protected int y;
     protected String texture;
+    protected int spriteWidth;
+    protected int spriteHeight;
     
     public GameObject() {
         
     }
 
+    public int getSpriteWidth() {
+        return spriteWidth;
+    }
+
+    public void setSpriteWidth(int spriteWidth) {
+        this.spriteWidth = spriteWidth;
+    }
+
+    public int getSpriteHeight() {
+        return spriteHeight;
+    }
+
+    public void setSpriteHeight(int spriteHeight) {
+        this.spriteHeight = spriteHeight;
+    }
+    
+    
+    
     public int getX() {
         return x;
     }

@@ -8,11 +8,15 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import zombie.domain.Player;
 import static org.junit.Assert.*;
+import zombie.domain.Direction;
+import zombie.domain.Map;
 import zombie.logic.ActorController;
 
 public class ActorControllerTest {
     
     ActorController ac;
+    MapController mc;
+    Map map;
     Player p;
     int speed;
 
@@ -29,7 +33,9 @@ public class ActorControllerTest {
 
     @Before
     public void setUp() {
-        ac = new ActorController();
+        map = new Map(1280, 720);
+        mc = new MapController(map);
+        ac = new ActorController(mc);
         p = new Player(50, 50, "test");
         speed = p.getSpeed();
     }
@@ -43,7 +49,7 @@ public class ActorControllerTest {
     public void directionUpWorks() {
         int startX = p.getX();
         int startY = p.getY();
-        ac.moveActor(p, "UP");
+        ac.moveActor(p, Direction.UP);
         boolean boolX = p.getX() == startX;
         boolean boolY = p.getY() == startY+speed;
         
@@ -55,7 +61,7 @@ public class ActorControllerTest {
     public void directionDownWorks() {
         int startX = p.getX();
         int startY = p.getY();
-        ac.moveActor(p, "DOWN");
+        ac.moveActor(p, Direction.DOWN);
         boolean boolX = p.getX() == startX;
         boolean boolY = p.getY() == startY-speed;
         
@@ -67,7 +73,7 @@ public class ActorControllerTest {
     public void directionLeftWorks() {
         int startX = p.getX();
         int startY = p.getY();
-        ac.moveActor(p, "LEFT");
+        ac.moveActor(p, Direction.LEFT);
         boolean boolX = p.getX() == startX-speed;
         boolean boolY = p.getY() == startY;
         
@@ -79,7 +85,7 @@ public class ActorControllerTest {
     public void directionRightWorks() {
         int startX = p.getX();
         int startY = p.getY();
-        ac.moveActor(p, "RIGHT");
+        ac.moveActor(p, Direction.RIGHT);
         boolean boolX = p.getX() == startX+speed;
         boolean boolY = p.getY() == startY;
         

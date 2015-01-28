@@ -2,8 +2,8 @@ package zombie.ui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
 import zombie.domain.Actor;
+import zombie.domain.Direction;
 import zombie.logic.ActorController;
 
 public class InputHandler {
@@ -18,17 +18,21 @@ public class InputHandler {
      
     public void lookForInput() {
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-            actorcontroller.moveActor(player, "UP");
+            commandActorController(Direction.UP);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-            actorcontroller.moveActor(player, "DOWN");
+            commandActorController(Direction.DOWN);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-            actorcontroller.moveActor(player, "LEFT");
+            commandActorController(Direction.LEFT);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            actorcontroller.moveActor(player, "RIGHT");
+            commandActorController(Direction.RIGHT);
         }
+    }
+    
+    private void commandActorController(Direction direction) {
+        actorcontroller.moveActor(player, direction);
     }
     
 

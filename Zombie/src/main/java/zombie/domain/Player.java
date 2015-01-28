@@ -10,6 +10,12 @@ public class Player extends Actor {
         this.x = x;
         this.y = y;
         this.texture = filename;
+        setSpriteSize();
+    }
+
+    private void setSpriteSize() {
+        setSpriteHeight(24);
+        setSpriteWidth(16);
     }
     
     
