@@ -26,7 +26,7 @@ public class LevelControllerTest {
         mc = new MapController(map);
         player = new Player(500,500,"test");
         ac = new ActorController(mc);
-        zombieAI = new ZombieAI(ac,player);
+        zombieAI = new ZombieAI(ac,player,5);
         lc = new LevelController(zombieAI);
     }
     

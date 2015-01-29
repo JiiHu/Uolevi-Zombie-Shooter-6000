@@ -14,4 +14,8 @@
 - 6h Luokkia ja testausta
 
 ### Ke 28.1.
-- 6h Toiminnallisuuden tekemistä, testausta
+- 6h Pelaaja ei voi mennä alueen yli, zombiet seuraavat pelaajaa + testausta
+
+### To 29.1.
+- 4.5h Zombiet syntyvät satunnaisesti, niillä voi olla eri tekstuuri + testausta
+

@@ -11,10 +11,27 @@ import static org.junit.Assert.*;
 public class TileTest {
     
     Tile tile;
+    Actor actor;
 
     @Before
     public void setUp() {
         tile = new Tile(10,10);
+        actor = new Actor();
+    }
+    
+    @Test
+    public void addActorWorks() {
+        assertEquals(0, tile.getActors().size());
+        tile.addActor(actor);
+        assertEquals(1, tile.getActors().size());
+    }
+    
+    @Test
+    public void removeActorWorks() {
+        tile.addActor(actor);
+        assertEquals(1, tile.getActors().size());
+        tile.removeActor(actor);
+        assertEquals(0, tile.getActors().size());
     }
     
     @Test

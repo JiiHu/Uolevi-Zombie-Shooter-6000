@@ -1,6 +1,7 @@
 package zombie.logic;
 
 import java.util.ArrayList;
+import java.util.Random;
 import zombie.domain.Direction;
 import zombie.domain.Place;
 import zombie.domain.Player;
@@ -12,21 +13,31 @@ public class ZombieAI {
     private ArrayList<Zombie> zombies;
     private Player player;
     private PlaceController placeController;
+    private Random random;
+    private int textureAmount;
 
-    public ZombieAI(ActorController ac, Player player) {
+    public ZombieAI(ActorController ac, Player player, int textureAmount) {
         this.ac = ac;
-        zombies = new ArrayList<Zombie>();
         this.player = player;
+        this.textureAmount = textureAmount;
+        
+        random = new Random(19);
+        zombies = new ArrayList<Zombie>();
         placeController = new PlaceController();
     }
 
     public ArrayList<Zombie> getZombies() {
         return zombies;
     }
+    
+    private int randomZombieTextureNumber() {
+        return random.nextInt(textureAmount)+1;
+    }
 
     public void addZombie() {
         Place place = placeController.getRandomPlace();
-        Zombie zombie = new Zombie(place.getX(), place.getY());
+        int textureNumber = randomZombieTextureNumber();
+        Zombie zombie = new Zombie(place.getX(), place.getY(), textureNumber+"");
         zombies.add(zombie);
     }
 

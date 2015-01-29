@@ -6,7 +6,6 @@ public class Actor extends GameObject {
     protected int hp;
     protected int maxHp;
     protected int speed;
-    protected int direction;
     protected Tile currentTile;
     
     public Actor() {
@@ -83,16 +82,6 @@ public class Actor extends GameObject {
     public void moveLeft() {
         this.x -= speed ;
     }
-
-    public int getDirection() {
-        return direction;
-    }
-
-    public void setDirection(int direction) {
-        this.direction = direction;
-    }
     
-    
-
     
 }

@@ -12,24 +12,17 @@ public class GameObjectTest {
     
     GameObject go;
 
-    public GameObjectTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
     @Before
     public void setUp() {
         go = new GameObject();
     }
-
-    @After
-    public void tearDown() {
+    
+    @Test
+    public void getTextureAsIntReturnsCorrectValue() {
+        go.setTexture("1");
+        assertEquals(1, go.getTextureAsInt());
+        go.setTexture("5");
+        assertEquals(5, go.getTextureAsInt());
     }
     
     @Test

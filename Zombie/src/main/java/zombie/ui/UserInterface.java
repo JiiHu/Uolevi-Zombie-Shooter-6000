@@ -13,29 +13,36 @@ import zombie.game.ZombieGame;
 
 public class UserInterface implements ApplicationListener {
 
-    Texture testTexture;
     SpriteBatch batch;
-    float elapsed;
 
     private ZombieGame game;
     private Texture background;
+    private Texture[] zombieTextures;
     private Sprite player;
     private InputHandler input;
-    
+    private int zombieTextureAmount;
 
     public UserInterface(ZombieGame game) {
+        zombieTextureAmount = game.getZombieTexturesAmount();
+        zombieTextures = new Texture[zombieTextureAmount+1];
         this.game = game;
         this.input = new InputHandler(game.getPlayer(), game.getActorController());
     }
 
     @Override
     public void create() {
-        testTexture = new Texture(Gdx.files.internal("assets/zombie-1.png"));
-        background = new Texture(Gdx.files.internal("assets/background.jpg"));
-
+        createTextures();
         createPlayer();
-
         batch = new SpriteBatch();
+    }
+    
+    
+    private void createTextures() {
+        background = new Texture(Gdx.files.internal("assets/background.jpg"));
+        
+        for (int i = 1; i <= zombieTextureAmount; i++) {
+            zombieTextures[i] = new Texture(Gdx.files.internal("assets/zombie-"+i+".png"));
+        }
     }
 
     private void createPlayer() {
@@ -45,24 +52,33 @@ public class UserInterface implements ApplicationListener {
 
     @Override
     public void render() {
-        elapsed += Gdx.graphics.getDeltaTime();
-        Gdx.gl.glClearColor(255, 255, 255, 0);
-        Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
+        clearScreen();
         
         input.lookForInput();
-        
         game.play();
         
         batch.begin();
 
         drawBackground();
-        
-        for (Zombie zombie : game.getZombieAI().getZombies()) {
-            drawTexture(testTexture, zombie.getX(), zombie.getY());
-        }
-        drawSprite(player, game.getPlayer().getX(), game.getPlayer().getY());
+        drawZombies();
+        drawPlayer();
 
         batch.end();
+    }
+
+    private void clearScreen() {
+        Gdx.gl.glClearColor(255, 255, 255, 0);
+        Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
+    }
+
+    private void drawPlayer() {
+        drawSprite(player, game.getPlayer().getX(), game.getPlayer().getY());
+    }
+
+    private void drawZombies() {
+        for (Zombie zombie : game.getZombieAI().getZombies()) {
+            drawTexture(zombie.getTextureAsInt(), zombie.getX(), zombie.getY());
+        }
     }
 
     private void drawSprite(Sprite sprite, int x, int y) {
@@ -74,8 +90,8 @@ public class UserInterface implements ApplicationListener {
         batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
 
-    public void drawTexture(Texture texture, int x, int y) {
-        batch.draw(texture, x, y);
+    public void drawTexture(int textureId, int x, int y) {
+        batch.draw(zombieTextures[textureId], x, y);
     }
 
     @Override

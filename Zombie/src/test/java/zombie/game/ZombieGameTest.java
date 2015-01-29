@@ -1,13 +1,11 @@
 package zombie.game;
 
 
-import zombie.game.ZombieGame;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import zombie.domain.Zombie;
+import zombie.logic.ActorController;
 
 public class ZombieGameTest {
     
@@ -19,9 +17,28 @@ public class ZombieGameTest {
     }
 
     @Test
+    public void getActionControllerWorks() {
+        assertEquals(ActorController.class, game.getActorController().getClass());
+    }
+
+    @Test
     public void playerGoesCenterOfTheScreen() {
         assertEquals(500, game.getPlayer().getX());
         assertEquals(500, game.getPlayer().getY());
+    }
+    
+
+    @Test
+    public void playMovesZombies() {
+        for (int i = 0; i < 100; i++) {
+            game.play();
+        }
+        Zombie z = game.getZombieAI().getZombies().get(0);
+        int x = z.getX();
+        int y = z.getY();
+        game.play();
+        assertTrue(x != z.getX());
+        assertTrue(y != z.getY());
     }
     
     @Test

@@ -10,10 +10,6 @@ public class GameObject {
     protected String texture;
     protected int spriteWidth;
     protected int spriteHeight;
-    
-    public GameObject() {
-        
-    }
 
     public int getSpriteWidth() {
         return spriteWidth;
@@ -31,7 +27,9 @@ public class GameObject {
         this.spriteHeight = spriteHeight;
     }
     
-    
+    public int getTextureAsInt() {
+        return Integer.parseInt(texture);
+    }
     
     public int getX() {
         return x;

@@ -18,6 +18,31 @@ public class MapTest {
     }
     
     @Test
+    public void generatesRightSizedTilesArray() {
+        // divider hardcoded into Map.class
+        int divider = 4;
+        // presumption that the map is 1280x720 pixels
+        int x = 1280/divider;
+        int y = 720/divider;
+        
+        try {
+            map.getTile(x-1, y-1);
+        } catch(Exception e) {
+            assertTrue(false);
+        }
+        
+        try {
+            map.getTile(x, y);
+            // if the test goes to next line the tile array
+            // was too big because it didn't throw error
+            assertTrue(false);
+        } catch(Exception e) {
+            assertTrue(true);
+        }
+        
+    }
+    
+    @Test
     public void widthAndHeightGetsCorrectly() {
         assertEquals(1280, map.getWidth());
         assertEquals(720, map.getHeight());
