@@ -5,9 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import java.awt.event.KeyEvent;
+import zombie.domain.GameObject;
 import zombie.domain.Zombie;
 import zombie.game.ZombieGame;
 
@@ -18,7 +17,7 @@ public class UserInterface implements ApplicationListener {
     private ZombieGame game;
     private Texture background;
     private Texture[] zombieTextures;
-    private Sprite player;
+    private Sprite playerSprite;
     private InputHandler input;
     private int zombieTextureAmount;
 
@@ -36,18 +35,16 @@ public class UserInterface implements ApplicationListener {
         batch = new SpriteBatch();
     }
     
-    
     private void createTextures() {
-        background = new Texture(Gdx.files.internal("assets/background.jpg"));
-        
+        background = new Texture(Gdx.files.internal("assets/background.jpg"));    
         for (int i = 1; i <= zombieTextureAmount; i++) {
             zombieTextures[i] = new Texture(Gdx.files.internal("assets/zombie-"+i+".png"));
         }
     }
 
     private void createPlayer() {
-        player = new Sprite(new Texture(Gdx.files.internal(game.getPlayer().getTexture())));
-        player.setOrigin(player.getWidth() / 2, player.getHeight() / 2);
+        playerSprite = new Sprite(new Texture(Gdx.files.internal(game.getPlayer().getTexture())));
+        playerSprite.setOrigin(playerSprite.getWidth() / 2, playerSprite.getHeight() / 2);
     }
 
     @Override
@@ -70,30 +67,33 @@ public class UserInterface implements ApplicationListener {
         Gdx.gl.glClearColor(255, 255, 255, 0);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
     }
+    
+    
 
     private void drawPlayer() {
-        drawSprite(player, game.getPlayer().getX(), game.getPlayer().getY());
+        drawSprite(playerSprite, game.getPlayer().getX(), game.getPlayer().getY());
     }
 
     private void drawZombies() {
         for (Zombie zombie : game.getZombieAI().getZombies()) {
-            drawTexture(zombie.getTextureAsInt(), zombie.getX(), zombie.getY());
+            drawZombie(zombie);
         }
     }
+    
+    public void drawZombie(Zombie zombie) {
+        int textureId = zombie.getTextureAsInt();
+        batch.draw(zombieTextures[textureId], zombie.getX(), zombie.getY());
+    }
+
 
     private void drawSprite(Sprite sprite, int x, int y) {
         batch.draw(sprite, x, y);
     }
 
-
     private void drawBackground() {
         batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
-
-    public void drawTexture(int textureId, int x, int y) {
-        batch.draw(zombieTextures[textureId], x, y);
-    }
-
+    
     @Override
     public void resize(int width, int height) {
     }
