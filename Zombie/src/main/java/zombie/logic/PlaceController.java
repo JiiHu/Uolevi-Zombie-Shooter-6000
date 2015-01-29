@@ -21,7 +21,7 @@ public class PlaceController {
     private void generatePlaces() {
         int amount = 10;
         // values are hardcoded with the presumption
-        // that the map size is 1280x720
+        // that the map size is 1280x720 pixels
         int[][] coordinates = { {40,50},
                                 {40,400},
                                 {40,650},
@@ -40,7 +40,7 @@ public class PlaceController {
         }
     }
     
-    public void addPlace(int x, int y) {
+    private void addPlace(int x, int y) {
         Place p = new Place(x, y);
         places.add(p);
     }
