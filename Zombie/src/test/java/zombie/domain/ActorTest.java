@@ -13,25 +13,10 @@ public class ActorTest {
     
     Actor actor;
     
-    public ActorTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
         actor = new Actor();
         actor.setMaxHp(50);
-    }
-    
-    @After
-    public void tearDown() {
     }
     
     @Test
@@ -72,6 +57,12 @@ public class ActorTest {
     public void cantSetNegativeMaxHp() {
         actor.setMaxHp(100);
         actor.setMaxHp(-1);
+        assertEquals(100, actor.getMaxHp());
+    }
+    @Test
+    public void cantSetZeroMaxHp() {
+        actor.setMaxHp(100);
+        actor.setMaxHp(0);
         assertEquals(100, actor.getMaxHp());
     }
     

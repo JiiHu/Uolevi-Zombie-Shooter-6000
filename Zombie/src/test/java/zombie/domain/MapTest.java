@@ -11,27 +11,12 @@ import static org.junit.Assert.*;
 public class MapTest {
     
     Map map;
-    
-    public MapTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+        
     @Before
     public void setUp() {
         map = new Map(1280, 720);
     }
     
-    @After
-    public void tearDown() {
-    }
-
     @Test
     public void widthAndHeightGetsCorrectly() {
         assertEquals(1280, map.getWidth());

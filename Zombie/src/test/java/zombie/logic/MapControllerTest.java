@@ -20,30 +20,14 @@ public class MapControllerTest {
     Actor actor;
     Tile tile;
     
-    public MapControllerTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
         map = new Map(1280, 720);
         mc = new MapController(map);
         ac = new ActorController(mc);
         actor = new Actor();
-        tile = new Tile();
+        tile = new Tile(10,10);
     }
-    
-    @After
-    public void tearDown() {
-    }
-    
     
     @Test
     public void trueIfActorsTileIsNull() {

@@ -49,10 +49,6 @@ public class ZombieGame {
     public Player getPlayer() {
         return player;
     }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
     
     public ActorController getActorController() {
         return actorController;

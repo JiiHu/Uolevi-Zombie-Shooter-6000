@@ -19,7 +19,7 @@ public class Map {
         this.tiles = new Tile[width/divider][height/divider];
         for (int i = 0; i < (height / divider); i++) {
             for (int j = 0; j < (width / divider); j++) {
-                this.tiles[j][i] = new Tile();
+                this.tiles[j][i] = new Tile(j,i);
             }
         }
         makeNonMovableArea();

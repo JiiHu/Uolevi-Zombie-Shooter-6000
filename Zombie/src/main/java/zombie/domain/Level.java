@@ -9,14 +9,14 @@ public class Level {
     private int lvlNumber;
     private int zombiesLeftOnLevel;
     private int zombiesUnreleased;
-    private int increasing;
+    private int increment;
     
     public Level(int lvlNumber, int zombieAmount) { 
         this.zombieAmount = zombieAmount;
         this.lvlNumber = lvlNumber;
         this.zombiesLeftOnLevel = zombieAmount;
         this.zombiesUnreleased = zombieAmount;
-        this.increasing = 8;
+        this.increment = 8;
     }
     
     public boolean isLevelOver() {
@@ -37,7 +37,7 @@ public class Level {
     
     public void newLevel() {
         lvlNumber++;
-        zombieAmount += increasing;
+        zombieAmount += increment;
         zombiesLeftOnLevel = zombieAmount;
         zombiesUnreleased = zombieAmount;
     }

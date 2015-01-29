@@ -8,8 +8,6 @@ public class Player extends Actor {
         this.x = x;
         this.y = y;
         this.texture = filename;
-        setSpriteHeight(24);
-        setSpriteWidth(16);
         this.speed = 2;
     }
     

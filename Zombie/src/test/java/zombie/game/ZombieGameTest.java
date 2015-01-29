@@ -13,35 +13,20 @@ public class ZombieGameTest {
     
     ZombieGame game;
 
-    public ZombieGameTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
     @Before
     public void setUp() {
-        game = new ZombieGame(100, 100);
-    }
-
-    @After
-    public void tearDown() {
+        game = new ZombieGame(1000, 1000);
     }
 
     @Test
     public void playerGoesCenterOfTheScreen() {
-        assertEquals(50, game.getPlayer().getX());
-        assertEquals(50, game.getPlayer().getY());
+        assertEquals(500, game.getPlayer().getX());
+        assertEquals(500, game.getPlayer().getY());
     }
     
     @Test
-    public void playAddsZombies() {
-        assertEquals(8, game.getZombieAI().getZombies().size());
+    public void playWorks() {
+        assertEquals(0, game.getZombieAI().getZombies().size());
         for (int i = 0; i < 99; i++) {
             game.play();
         }
@@ -49,7 +34,6 @@ public class ZombieGameTest {
         game.play();
         assertEquals(1, game.getZombieAI().getZombies().size());
     }
-    
     
     
     

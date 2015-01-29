@@ -2,6 +2,7 @@ package zombie.logic;
 
 import java.util.ArrayList;
 import zombie.domain.Direction;
+import zombie.domain.Place;
 import zombie.domain.Player;
 import zombie.domain.Zombie;
 
@@ -10,11 +11,13 @@ public class ZombieAI {
     private ActorController ac;
     private ArrayList<Zombie> zombies;
     private Player player;
+    private PlaceController placeController;
 
     public ZombieAI(ActorController ac, Player player) {
         this.ac = ac;
         zombies = new ArrayList<Zombie>();
         this.player = player;
+        placeController = new PlaceController();
     }
 
     public ArrayList<Zombie> getZombies() {
@@ -22,7 +25,8 @@ public class ZombieAI {
     }
 
     public void addZombie() {
-        Zombie zombie = new Zombie(100, 100);
+        Place place = placeController.getRandomPlace();
+        Zombie zombie = new Zombie(place.getX(), place.getY());
         zombies.add(zombie);
     }
 

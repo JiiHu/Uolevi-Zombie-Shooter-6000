@@ -13,6 +13,8 @@ public class Actor extends GameObject {
         this.maxHp = 100;
         this.hp = this.maxHp;
         this.speed = 1;
+        this.spriteWidth = 20;
+        this.spriteHeight = 24;
     }
 
     public Tile getCurrentTile() {
@@ -40,7 +42,7 @@ public class Actor extends GameObject {
     }
 
     public void setMaxHp(int maxHp) {
-        if (maxHp < 0) {
+        if (maxHp <= 0) {
             return;
         }
         this.maxHp = maxHp;

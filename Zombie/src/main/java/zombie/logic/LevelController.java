@@ -15,9 +15,13 @@ public class LevelController {
         this.zombieAI = zombieAI;
         newLevel();
     }
+
+    public int getLevelNumber() {
+        return level.getLvlNumber();
+    }
     
     public void releaseZombie() {
-        if (level.getZombiesUnreleased() == 0) {
+        if (!unreleasedZombiesLeft()) {
             return;
         }
         level.zombieReleased();
@@ -30,9 +34,6 @@ public class LevelController {
     
     public void newLevel() {
         level.newLevel();
-        for (int i = 0; i < level.getZombieAmount(); i++) {
-            zombieAI.addZombie();
-        }
     }
     
     public void zombieKilled() {
