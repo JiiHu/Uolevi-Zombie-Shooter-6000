@@ -23,7 +23,7 @@ public class ZombieAITest {
         player = new Player(500, 500, "test");
         map = new Map(1280, 720);
         mc = new MapController(map);
-        ac = new ActorController(mc);
+        ac = new ActorController(mc, player);
         zombieAI = new ZombieAI(ac, player, 5);
     }
 

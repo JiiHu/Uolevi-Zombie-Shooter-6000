@@ -1,15 +1,13 @@
 
 package zombie.logic;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import zombie.domain.Actor;
 import zombie.domain.Direction;
 import zombie.domain.Map;
+import zombie.domain.Player;
 import zombie.domain.Tile;
 
 public class MapControllerTest {
@@ -17,6 +15,7 @@ public class MapControllerTest {
     Map map;
     ActorController ac;
     MapController mc;
+    Player player;
     Actor actor;
     Tile tile;
     
@@ -24,9 +23,10 @@ public class MapControllerTest {
     public void setUp() {
         map = new Map(1280, 720);
         mc = new MapController(map);
-        ac = new ActorController(mc);
         actor = new Actor();
         tile = new Tile(10,10);
+        player = new Player(10, 10, "test");
+        ac = new ActorController(mc, player);
     }
     
     @Test

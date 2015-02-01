@@ -4,14 +4,56 @@ package zombie.logic;
 
 import zombie.domain.Actor;
 import zombie.domain.Direction;
+import zombie.domain.Player;
+import zombie.domain.Zombie;
 
 public class ActorController {
     
     private MapController mapController;
+    private Player player;
     
-    public ActorController(MapController mapController) {
+    public ActorController(MapController mapController, Player player) {
         this.mapController = mapController;
+        this.player = player;
     }
+    
+    public void rotateZombie(Zombie zombie) {
+        int x = player.getX();
+        int y = player.getY();
+        rotateActor((Actor) zombie, x, y);
+    }
+
+    public void rotatePlayer(int x, int y) {
+        rotateActor(player, x, y);
+    }
+    
+    private void rotateActor(Actor actor, int x, int y) {
+        int angle = calculateAngle(x, y, actor.getX(), actor.getY());
+        actor.setAngle(angle);
+    }
+    
+    // calculates angle followingly
+    //  -135    -90     -45
+    //  180     x,y     0
+    //  135     90      45
+    private int calculateAngle(int mouseX, int mouseY, int x, int y) {
+        int diffX = mouseX - x;
+        int diffY = mouseY - y;
+        double radians = Math.atan2(diffY, diffX);
+        double angle = radians * 180 / Math.PI;
+        return editAngleTo360Degrees((int) angle);
+    }
+    
+    private int editAngleTo360Degrees(int angle) {
+        if (angle < 0) {
+            angle = angle * -1;
+        } else {
+            angle = 180 + (180-angle);
+        }
+        return 360-angle;
+    }
+    
+    
     
     public void moveActor(Actor actor, Direction direction) {
         makeMovement(actor, direction);    

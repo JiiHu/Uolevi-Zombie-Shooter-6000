@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import zombie.domain.Player;
 import zombie.domain.Zombie;
@@ -57,6 +59,8 @@ public class UserInterface implements ApplicationListener {
         game.play();
         
         batch.begin();
+        
+        drawText();
 
         drawBackground();
         drawZombies();
@@ -69,13 +73,22 @@ public class UserInterface implements ApplicationListener {
         Gdx.gl.glClearColor(255, 255, 255, 0);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
     }
+
+    private void drawText() {
+        BitmapFont font = new BitmapFont();
+        font.setColor(Color.RED);
+        font.draw(batch, "playerSprite.getRotation(): "+playerSprite.getRotation(), 200, 140);
+        font.draw(batch, "player.getX(): "+player.getX()+"player.getY(): "+player.getY(), 200, 110);
+        font.draw(batch, "mouse X: "+Gdx.input.getX()+"mouse Y: "+(720-Gdx.input.getY()), 200, 80);
+    }
     
+    private int calculateAngleDifference(int angle, int currentRotation) {
+        return angle - currentRotation;
+    }
 
     private void drawPlayer() {
-        if (playerSprite.getRotation() != player.getAngle()) {
-            int rotation = (int) playerSprite.getRotation() - player.getAngle();
-            playerSprite.rotate(rotation);
-        }
+        int difference = calculateAngleDifference(player.getAngle(), (int) playerSprite.getRotation());
+        playerSprite.rotate(difference);
         playerSprite.setPosition(player.getX(), player.getY());
         playerSprite.draw(batch);
     }
@@ -88,7 +101,22 @@ public class UserInterface implements ApplicationListener {
     
     public void drawZombie(Zombie zombie) {
         int textureId = zombie.getTextureAsInt();
-        batch.draw(zombieTextures[textureId], zombie.getX(), zombie.getY());
+        Texture texture = zombieTextures[textureId];
+        //batch.draw(texture, zombie.getX(), zombie.getY());
+        
+        int angle = zombie.getAngle();
+        
+        batch.draw(texture, zombie.getX(), zombie.getY(),
+                0, 0, texture.getWidth(), texture.getHeight(),
+                1, 1,
+                angle, 0, 0,
+                texture.getWidth(), texture.getHeight(), false, false);
+        
+        // Texture texture, float x, float y,
+        // float originX, float originY, float width, float height,
+        // float scaleX, float scaleY,
+        // float rotation, int srcX, int srcY,
+        //int srcWidth, int srcHeight, boolean flipX, boolean flipY
     }
 
 
@@ -99,6 +127,10 @@ public class UserInterface implements ApplicationListener {
     private void drawBackground() {
         batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
+    
+    
+    
+    
     
     @Override
     public void resize(int width, int height) {

@@ -6,6 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import zombie.domain.Zombie;
 import zombie.logic.ActorController;
+import zombie.logic.InputController;
 
 public class ZombieGameTest {
     
@@ -19,6 +20,17 @@ public class ZombieGameTest {
     @Test
     public void getActionControllerWorks() {
         assertEquals(ActorController.class, game.getActorController().getClass());
+    }
+
+    @Test
+    public void getInputControllerWorks() {
+        assertEquals(InputController.class, game.getInputController().getClass());
+    }
+
+    @Test
+    public void getZombieTexturesAmountWorks() {
+        // value 5 is hardcoded at the moment
+        assertEquals(5, game.getZombieTexturesAmount());
     }
 
     @Test

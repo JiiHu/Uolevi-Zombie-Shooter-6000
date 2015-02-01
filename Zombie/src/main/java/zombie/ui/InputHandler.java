@@ -2,17 +2,17 @@ package zombie.ui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import zombie.domain.Actor;
 import zombie.domain.Direction;
-import zombie.logic.ActorController;
 import zombie.logic.InputController;
 
 public class InputHandler {
     
     private InputController inputController;
+    private int height;
     
     public InputHandler(InputController inputController) {
         this.inputController = inputController;
+        this.height = 720;
     }
      
     public void lookForInput() {
@@ -22,7 +22,7 @@ public class InputHandler {
 
     private void lookForMouseInput() {
         int x = Gdx.input.getX();
-        int y = Gdx.input.getY();
+        int y = height - Gdx.input.getY();
         inputController.mousePosition(x, y);
     }
 

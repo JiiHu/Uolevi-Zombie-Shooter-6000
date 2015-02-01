@@ -19,31 +19,16 @@ public class ActorControllerTest {
     ActorController ac;
     MapController mc;
     Map map;
-    Actor person;
+    Player person;
     int speed;
-
-    public ActorControllerTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
 
     @Before
     public void setUp() {
         map = new Map(1280, 720);
         mc = new MapController(map);
-        ac = new ActorController(mc);
         person = new Player(50, 50, "test");
+        ac = new ActorController(mc, person);
         speed = person.getSpeed();
-    }
-
-    @After
-    public void tearDown() {
     }
     
 

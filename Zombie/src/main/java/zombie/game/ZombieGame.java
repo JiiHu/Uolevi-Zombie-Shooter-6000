@@ -31,15 +31,19 @@ public class ZombieGame {
         this.player = new Player(width/2, height/2, "assets/player.png");
         this.map = new Map(width, height);
         this.mapController = new MapController(map);
-        this.actorController = new ActorController(mapController);
+        this.actorController = new ActorController(mapController, player);
         this.zombieAI = new ZombieAI(actorController, player, zombieTexturesAmount);
         this.levelController = new LevelController(zombieAI);
-        this.inputController = new InputController(player, actorController);
+        this.inputController = new InputController(actorController, player);
     }
     
     public void play() {
         timePlayed++;
         zombieAI.moveZombies();
+        checkIfZombieShouldBeReleased();
+    }
+
+    private void checkIfZombieShouldBeReleased() {
         if (timePlayed % 100 == 0) {
             levelController.releaseZombie();
         }
