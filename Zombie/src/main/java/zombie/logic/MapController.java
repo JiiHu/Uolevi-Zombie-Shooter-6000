@@ -9,18 +9,29 @@ import zombie.domain.Tile;
 public class MapController {
     
     private Map map;
+    private int divider;
     
     public MapController(Map map) {
         this.map = map;
+        this.divider = map.getDivider();
     }
     
     public void updateActorsTile(Actor actor) {
-        int divider = map.getDivider();
         int tileX = calculateTile(actor.getX(), actor.getSpriteWidth(), divider);
         int tileY = calculateTile(actor.getY(), actor.getSpriteHeight(), divider);
         
         removeActorFromTile(actor);
         setNewTileToActor(actor, tileX, tileY);
+    }
+    
+    public Actor checkIfSomethingIsInSameTile(int x, int y) {
+        int tileX = calculateTile(x, 1, divider);
+        int tileY = calculateTile(y, 1, divider);
+        Tile tile = map.getTile(tileX, tileY);
+        if (tile.getActors().isEmpty()) {
+            return null;
+        }
+        return tile.getActors().get(0);
     }
     
     private int calculateTile(int pixels, int spriteSize, int divider) {
@@ -49,7 +60,5 @@ public class MapController {
         }
         return tile.isWalkable();
     }
-   
-    
     
 }

@@ -5,6 +5,7 @@ package zombie.game;
 import zombie.domain.Map;
 import zombie.domain.Player;
 import zombie.logic.ActorController;
+import zombie.logic.BulletController;
 import zombie.logic.InputController;
 import zombie.logic.LevelController;
 import zombie.logic.MapController;
@@ -24,6 +25,7 @@ public class ZombieGame {
     private MapController mapController;
     private LevelController levelController;
     private InputController inputController;
+    private BulletController bulletController;
     
     public ZombieGame(int width, int height) {
         this.timePlayed = 0;
@@ -34,7 +36,8 @@ public class ZombieGame {
         this.actorController = new ActorController(mapController, player);
         this.zombieAI = new ZombieAI(actorController, player, zombieTexturesAmount);
         this.levelController = new LevelController(zombieAI);
-        this.inputController = new InputController(actorController, player);
+        this.bulletController = new BulletController(mapController);
+        this.inputController = new InputController(actorController, player, bulletController);
     }
     
     public void play() {

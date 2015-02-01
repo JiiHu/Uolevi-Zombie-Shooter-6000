@@ -23,6 +23,11 @@ public class InputHandler {
     private void lookForMouseInput() {
         int x = Gdx.input.getX();
         int y = height - Gdx.input.getY();
+        
+        if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+            inputController.mouseClicked(x, y);
+        }
+        
         inputController.mousePosition(x, y);
     }
 

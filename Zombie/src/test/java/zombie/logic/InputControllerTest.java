@@ -17,6 +17,7 @@ public class InputControllerTest {
     
     ActorController ac;
     MapController mc;
+    BulletController bc;
     Map map;
     Player player;
     
@@ -26,8 +27,9 @@ public class InputControllerTest {
         mc = new MapController(map);
         player = new Player(500,500,"test");
         ac = new ActorController(mc, player);
+        bc = new BulletController(mc);
         
-        ic = new InputController(ac, player);
+        ic = new InputController(ac, player, bc);
     }
 
     
