@@ -40,5 +40,12 @@ public class InputControllerTest {
         assertTrue(player.getX() > x);
         assertTrue(player.getY() > y);
     }
+    
+    @Test
+    public void mousePositionWorks() {
+        int angle = player.getAngle();
+        ic.mousePosition(100, 100);
+        assertTrue(angle != player.getAngle());
+    }
 
 }

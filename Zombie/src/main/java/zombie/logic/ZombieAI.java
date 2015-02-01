@@ -49,7 +49,6 @@ public class ZombieAI {
         for (Zombie zombie : zombies) {
             moveZombieTowardsPlayer(zombie);
             ac.rotateZombie(zombie);
-            System.out.println(zombie.getAngle());
         }
     }
 

@@ -15,7 +15,25 @@ public class GameObjectTest {
     @Before
     public void setUp() {
         go = new GameObject();
+        go.setX(100);
+        go.setY(100);
+        go.setSpriteHeight(20);
+        go.setSpriteWidth(20);
     }
+    
+    @Test
+    public void setCentersWorksAfterSettingSpriteSize() {
+        assertEquals(110, go.getCenterX());
+        assertEquals(110, go.getCenterY());
+        
+        go.setSpriteHeight(40);
+        go.setSpriteWidth(40);
+        
+        assertEquals(120, go.getCenterX());
+        assertEquals(120, go.getCenterY());
+        
+    }
+    
     
     @Test
     public void defaultAngleIsZero() {

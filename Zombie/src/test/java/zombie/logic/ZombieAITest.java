@@ -26,7 +26,8 @@ public class ZombieAITest {
         ac = new ActorController(mc, player);
         zombieAI = new ZombieAI(ac, player, 5);
     }
-
+    
+    
     @Test
     public void getZombiesWorks() {
         assertEquals(0, zombieAI.getZombies().size());

@@ -19,3 +19,6 @@
 ### To 29.1.
 - 5h Zombiet syntyvät satunnaisesti, niillä voi olla eri tekstuuri + testausta
 
+### Su 1.2.
+- 5.5h Zombiet suuntaavat itsensä pelaajaan päin + testejä
+
