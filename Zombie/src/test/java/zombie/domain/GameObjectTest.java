@@ -18,6 +18,11 @@ public class GameObjectTest {
     }
     
     @Test
+    public void defaultAngleIsZero() {
+        assertEquals(0, go.getAngle());
+    }
+    
+    @Test
     public void getTextureAsIntReturnsCorrectValue() {
         go.setTexture("1");
         assertEquals(1, go.getTextureAsInt());

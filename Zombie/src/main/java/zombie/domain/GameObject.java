@@ -10,6 +10,7 @@ public class GameObject {
     protected String texture;
     protected int spriteWidth;
     protected int spriteHeight;
+    protected int angle = 0;
 
     public int getSpriteWidth() {
         return spriteWidth;
@@ -54,8 +55,14 @@ public class GameObject {
     public void setTexture(String texture) {
         this.texture = texture;
     }
-    
-    
+
+    public int getAngle() {
+        return angle;
+    }
+
+    public void setAngle(int angle) {
+        this.angle = angle;
+    }
     
     
 }

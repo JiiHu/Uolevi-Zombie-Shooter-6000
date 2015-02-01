@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import zombie.domain.GameObject;
+import zombie.domain.Player;
 import zombie.domain.Zombie;
 import zombie.game.ZombieGame;
 
@@ -20,18 +20,20 @@ public class UserInterface implements ApplicationListener {
     private Sprite playerSprite;
     private InputHandler input;
     private int zombieTextureAmount;
-
+    private Player player;
+    
     public UserInterface(ZombieGame game) {
         zombieTextureAmount = game.getZombieTexturesAmount();
         zombieTextures = new Texture[zombieTextureAmount+1];
         this.game = game;
-        this.input = new InputHandler(game.getPlayer(), game.getActorController());
+        this.input = new InputHandler(game.getInputController());
+        this.player = game.getPlayer();
     }
 
     @Override
     public void create() {
         createTextures();
-        createPlayer();
+        createPlayerSprite();
         batch = new SpriteBatch();
     }
     
@@ -42,8 +44,8 @@ public class UserInterface implements ApplicationListener {
         }
     }
 
-    private void createPlayer() {
-        playerSprite = new Sprite(new Texture(Gdx.files.internal(game.getPlayer().getTexture())));
+    private void createPlayerSprite() {
+        playerSprite = new Sprite(new Texture(Gdx.files.internal(player.getTexture())));
         playerSprite.setOrigin(playerSprite.getWidth() / 2, playerSprite.getHeight() / 2);
     }
 
@@ -68,10 +70,14 @@ public class UserInterface implements ApplicationListener {
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
     }
     
-    
 
     private void drawPlayer() {
-        drawSprite(playerSprite, game.getPlayer().getX(), game.getPlayer().getY());
+        if (playerSprite.getRotation() != player.getAngle()) {
+            int rotation = (int) playerSprite.getRotation() - player.getAngle();
+            playerSprite.rotate(rotation);
+        }
+        playerSprite.setPosition(player.getX(), player.getY());
+        playerSprite.draw(batch);
     }
 
     private void drawZombies() {
