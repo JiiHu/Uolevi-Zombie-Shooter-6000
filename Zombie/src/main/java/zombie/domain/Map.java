@@ -32,7 +32,7 @@ public class Map {
      * 
      * @param   x   locations place on X axis
      * @param   y   locations place on Y axis
-     * @return tile which is on the desired location
+     * @return Tile which is on the desired location
      */
     public Tile getTile(int x, int y) {
         return tiles[x][y];
@@ -62,7 +62,7 @@ public class Map {
      * For example, if the map is 1280 pixels wide and the divider
      * is 4, the map is made of 1280/4 = 320 horizontal Tiles
      * 
-     * @return number which is used as divider
+     * @return Number which is used as divider
      */
     public int getDivider() {
         return divider;

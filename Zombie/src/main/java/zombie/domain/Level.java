@@ -25,7 +25,7 @@ public class Level {
      * Method tells whether the current level is over or not,
      * that is that is there zombies left which aren't killed
      * 
-     * @return is the current level over 
+     * @return Is the current level over 
      */
     public boolean isLevelOver() {
         return zombiesLeftOnLevel == 0;
@@ -49,7 +49,7 @@ public class Level {
      * Method returns how many zombies are waiting to be released
      * on current level
      * 
-     * @return amount of zombies which aren't yet released on the current level
+     * @return Amount of zombies which aren't yet released on the current level
      */
     public int getZombiesUnreleased() {
         return zombiesUnreleased;
@@ -68,7 +68,7 @@ public class Level {
     /**
      * Method returns the total amount of zombies on current level
      * 
-     * @return amount of zombies on current level
+     * @return Amount of zombies on current level
      */
     public int getZombieAmount() {
         return zombieAmount;
@@ -86,7 +86,7 @@ public class Level {
     /**
      * Method returns current level number
      * 
-     * @return current level number
+     * @return Current level number
      */
     public int getLvlNumber() {
         return lvlNumber;
