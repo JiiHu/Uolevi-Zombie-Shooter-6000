@@ -37,21 +37,35 @@ public class Map {
     public Tile getTile(int x, int y) {
         return tiles[x][y];
     }
-
+    
+    /**
+     * Method returns Map's width in pixels
+     * 
+     * @return Map's width in pixels
+     */
     public int getWidth() {
         return width;
     }
-
+    
+    /**
+     * Method returns Map's height in pixels
+     * 
+     * @return Map's height in pixels
+     */
     public int getHeight() {
         return height;
     }
 
+    /**
+     * Method returns the number which is used as divider to generate the map
+     * <p>
+     * For example, if the map is 1280 pixels wide and the divider
+     * is 4, the map is made of 1280/4 = 320 horizontal Tiles
+     * 
+     * @return number which is used as divider
+     */
     public int getDivider() {
         return divider;
-    }
-
-    public void setDivider(int divider) {
-        this.divider = divider;
     }
 
     private void makeNonMovableArea() {

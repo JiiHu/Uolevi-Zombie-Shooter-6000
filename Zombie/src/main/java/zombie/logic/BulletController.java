@@ -6,7 +6,9 @@ import zombie.domain.Actor;
 import zombie.domain.Bullet;
 import zombie.domain.Player;
 
-
+/**
+ * Class to control the bullets which are fired
+ */
 public class BulletController {
     
     private int effectivity;
@@ -27,7 +29,7 @@ public class BulletController {
     private void goForwardUntilBulletHitsWall(Bullet b) {
         int x = b.getX();
         int y = b.getY();
-        Actor actor = mc.checkIfSomethingIsInSameTile(x, y);
+        Actor actor = mc.checkIfSomethingIsInTile(x, y);
         
         if (actor == null) {
             return;

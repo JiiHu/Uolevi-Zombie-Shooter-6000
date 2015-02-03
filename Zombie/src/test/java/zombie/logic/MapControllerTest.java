@@ -31,7 +31,7 @@ public class MapControllerTest {
     
     @Test
     public void trueIfActorsTileIsNull() {
-        boolean ans = mc.checkIfInNonWalkableTile(actor);
+        boolean ans = mc.checkIfInWalkableTile(actor);
         assertTrue(ans);
     }
     

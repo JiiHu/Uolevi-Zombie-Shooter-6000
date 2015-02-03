@@ -5,6 +5,9 @@ import com.badlogic.gdx.Input;
 import zombie.domain.Direction;
 import zombie.logic.InputController;
 
+/**
+ * Class is used to look for input from the mouse and the keyboard
+ */
 public class InputHandler {
     
     private InputController inputController;
@@ -14,7 +17,10 @@ public class InputHandler {
         this.inputController = inputController;
         this.height = 720;
     }
-     
+    
+    /**
+     * Method will look for input from the mouse and the keyboard
+     */
     public void lookForInput() {
         lookForMouseInput();
         lookForKeyboardInput();

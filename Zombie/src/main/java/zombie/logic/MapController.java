@@ -5,7 +5,9 @@ import zombie.domain.Actor;
 import zombie.domain.Map;
 import zombie.domain.Tile;
 
-
+/**
+ * Class to control the map
+ */
 public class MapController {
     
     private Map map;
@@ -16,6 +18,11 @@ public class MapController {
         this.divider = map.getDivider();
     }
     
+    /**
+     * Method will update an Actor's Tile to the one which it is on at the moment
+     * 
+     * @param   actor   Actor which Tile should be updated
+     */
     public void updateActorsTile(Actor actor) {
         int tileX = calculateTile(actor.getX(), actor.getSpriteWidth(), divider);
         int tileY = calculateTile(actor.getY(), actor.getSpriteHeight(), divider);
@@ -24,7 +31,14 @@ public class MapController {
         setNewTileToActor(actor, tileX, tileY);
     }
     
-    public Actor checkIfSomethingIsInSameTile(int x, int y) {
+    /**
+     * Method will check is there some Actor on the tile which is on the given coordinates
+     * 
+     * @param   x   Coordinate of the X axis
+     * @param   y   Coordinate of the Y axis
+     * @return 
+     */
+    public Actor checkIfSomethingIsInTile(int x, int y) {
         int tileX = calculateTile(x, 1, divider);
         int tileY = calculateTile(y, 1, divider);
         Tile tile = map.getTile(tileX, tileY);
@@ -53,7 +67,13 @@ public class MapController {
         newTile.addActor(actor);
     }
 
-    public boolean checkIfInNonWalkableTile(Actor actor) {
+    /**
+     * Method will tell whether is the given actor in walkable tile
+     * 
+     * @param   actor   Actor which currentTile is checked
+     * @return boolean whether the currentTile is walkable
+     */
+    public boolean checkIfInWalkableTile(Actor actor) {
         Tile tile = actor.getCurrentTile();
         if (tile == null) {
             return true;

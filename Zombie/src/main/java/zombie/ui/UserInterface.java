@@ -12,6 +12,9 @@ import zombie.domain.Player;
 import zombie.domain.Zombie;
 import zombie.game.ZombieGame;
 
+/**
+ * Class is used to draw image with LibGDX
+ */
 public class UserInterface implements ApplicationListener {
 
     SpriteBatch batch;

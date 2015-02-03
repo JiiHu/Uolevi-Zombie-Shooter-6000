@@ -7,6 +7,9 @@ import zombie.domain.Place;
 import zombie.domain.Player;
 import zombie.domain.Zombie;
 
+/**
+ * Class to control the Zombies' artificial intelligence
+ */
 public class ZombieAI {
 
     private ActorController ac;
@@ -26,6 +29,11 @@ public class ZombieAI {
         placeController = new PlaceController();
     }
 
+    /**
+     * Method will return a list of zombies which are on the game at the moment
+     * 
+     * @return List of zombies at the moment
+     */
     public ArrayList<Zombie> getZombies() {
         return zombies;
     }
@@ -34,6 +42,9 @@ public class ZombieAI {
         return random.nextInt(textureAmount)+1;
     }
 
+    /**
+     * Method will add an zombie to the game
+     */
     public void addZombie() {
         Place place = placeController.getRandomPlace();
         int textureNumber = randomZombieTextureNumber();
@@ -41,10 +52,18 @@ public class ZombieAI {
         zombies.add(zombie);
     }
 
+    /**
+     * Method will remove the given Zombie from the list of zombies
+     * 
+     * @param   zombie  Zombie which should be removed
+     */
     public void removeZombie(Zombie zombie) {
         zombies.remove(zombie);
     }
 
+    /**
+     * Method will move Zombies towards the player and to face to the Player's direction
+     */
     public void moveZombies() {
         for (Zombie zombie : zombies) {
             moveZombieTowardsPlayer(zombie);

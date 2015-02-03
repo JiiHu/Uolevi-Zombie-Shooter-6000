@@ -4,7 +4,9 @@ package zombie.logic;
 
 import zombie.domain.Level;
 
-
+/**
+ * Class to control the level changing and releasing zombies
+ */
 public class LevelController {
     
     private Level level;
@@ -16,10 +18,18 @@ public class LevelController {
         newLevel();
     }
 
+    /**
+     * Method will return the current level number
+     * 
+     * @return current level number
+     */
     public int getLevelNumber() {
         return level.getLvlNumber();
     }
     
+    /**
+     * Method will release a zombie to the game
+     */
     public void releaseZombie() {
         if (!unreleasedZombiesLeft()) {
             return;
@@ -28,14 +38,26 @@ public class LevelController {
         zombieAI.addZombie();
     }
     
+    /**
+     * Method will return boolean whether there are unreleased zombies
+     * left on the current level or not
+     * 
+     * @return are there unreleased zombies left on the level
+     */
     public boolean unreleasedZombiesLeft() {
         return level.getZombiesUnreleased() > 0;
     }
     
+    /**
+     * Method will change the level to the next one
+     */
     public void newLevel() {
         level.newLevel();
     }
     
+    /**
+     * Method will tell the level that a zombie is killed
+     */
     public void zombieKilled() {
         level.zombieKilled();
         if (level.isLevelOver()) {

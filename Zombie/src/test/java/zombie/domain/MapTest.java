@@ -54,10 +54,8 @@ public class MapTest {
     }
     
     @Test
-    public void dividerSetsAndGetsCorrectly() {
-        map.setDivider(2);
-        assertEquals(2, map.getDivider());
-        map.setDivider(4);
+    public void getDividerWorks() {
+        // 4 is hardcoded
         assertEquals(4, map.getDivider());
     }
     

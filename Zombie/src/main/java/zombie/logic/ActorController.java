@@ -7,6 +7,9 @@ import zombie.domain.Direction;
 import zombie.domain.Player;
 import zombie.domain.Zombie;
 
+/**
+ * Class for controlling actors, such as player and zombies
+ */
 public class ActorController {
     
     private MapController mapController;
@@ -17,12 +20,23 @@ public class ActorController {
         this.player = player;
     }
     
+    /**
+     * Method rotates zombie to face the player
+     * 
+     * @param   zombie  Zombie to be rotated
+     */
     public void rotateZombie(Zombie zombie) {
         int x = player.getX();
         int y = player.getY();
         rotateActor((Actor) zombie, x, y);
     }
 
+    /**
+     * Method rotates player to face the given coordinates
+     * 
+     * @param   x   X axis of the point which player should face
+     * @param   y   Y axis of the point which player should face
+     */
     public void rotatePlayer(int x, int y) {
         rotateActor(player, x, y);
     }
@@ -32,10 +46,12 @@ public class ActorController {
         actor.setAngle(angle);
     }
     
-    // calculates angle followingly
-    //  -135    -90     -45
-    //  180     x,y     0
-    //  135     90      45
+    /*
+      calculates angle followingly
+      -135    -90     -45
+      180     x,y     0
+      135     90      45    
+    */
     private int calculateAngle(int mouseX, int mouseY, int x, int y) {
         int diffX = mouseX - x;
         int diffY = mouseY - y;
@@ -53,13 +69,20 @@ public class ActorController {
         return 360-angle;
     }
     
-    
-    
+    /**
+     * Method moves actor to the given direction
+     * <p>
+     * Will automatically revert the movement if the actor 
+     * goes to the non-walkable area
+     * 
+     * @param   actor   Actor to be moved
+     * @param   direction Direction to which actor should go
+     */
     public void moveActor(Actor actor, Direction direction) {
         makeMovement(actor, direction);    
         mapController.updateActorsTile(actor);
         
-        boolean wasAbleToWalk = mapController.checkIfInNonWalkableTile(actor);
+        boolean wasAbleToWalk = mapController.checkIfInWalkableTile(actor);
         if (!wasAbleToWalk) {
             revertMovement(actor, direction);
         }

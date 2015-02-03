@@ -82,7 +82,12 @@ public class Level {
     public void setZombieAmount(int zombieAmount) {
         this.zombieAmount = zombieAmount;
     }
-
+    
+    /**
+     * Method returns current level number
+     * 
+     * @return current level number
+     */
     public int getLvlNumber() {
         return lvlNumber;
     }

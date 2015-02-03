@@ -2,7 +2,9 @@
 
 package zombie.domain;
 
-
+/**
+ * Class specificly for Zombies
+ */
 public class Zombie extends Actor {
     
     
