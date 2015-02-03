@@ -4,7 +4,9 @@ package zombie.domain;
 
 import java.util.ArrayList;
 
-
+/**
+ * Class contains information about the map on which actors move
+ */
 public class Map {
     
     private Tile[][] tiles;
@@ -25,6 +27,13 @@ public class Map {
         makeNonMovableArea();
     }
     
+    /**
+     * Method returns a piece of map on certain location
+     * 
+     * @param   x   locations place on X axis
+     * @param   y   locations place on Y axis
+     * @return tile which is on the desired location
+     */
     public Tile getTile(int x, int y) {
         return tiles[x][y];
     }
@@ -55,6 +64,7 @@ public class Map {
         for (int row = 0; row < (height / divider); row++) {
             for (int col = 0; col < (width / divider); col++) {
                 Tile tile = this.tiles[col][row];
+                // padding around the sides which is unmovable
                 if (row <= minHeight || col <= minWidth || row >= maxHeight || col >= maxWidth) {
                     tile.setWalkable(false);
                 } 

@@ -1,8 +1,9 @@
 
 package zombie.domain;
 
-import com.badlogic.gdx.graphics.Texture;
-
+/**
+ * Super class for different kinds of objects which are in the game
+ */
 public class GameObject {
     
     protected int x;

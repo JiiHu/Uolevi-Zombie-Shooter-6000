@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.Random;
 import zombie.domain.Place;
 
-
+/**
+ * Class is used to create places so that zombies can spawn from them
+ */
 public class PlaceController {
     
     private ArrayList<Place> places;
@@ -45,6 +47,11 @@ public class PlaceController {
         places.add(p);
     }
     
+    /**
+     * Method returns random place
+     * 
+     * @return random place
+     */
     public Place getRandomPlace() {
         int size = places.size();
         int i = random.nextInt(size);

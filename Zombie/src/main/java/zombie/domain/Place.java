@@ -2,7 +2,9 @@
 
 package zombie.domain;
 
-
+/**
+ * Class stores information about a certain place
+ */
 public class Place {
     
     private int x;
