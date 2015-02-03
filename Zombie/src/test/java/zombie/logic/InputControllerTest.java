@@ -20,6 +20,8 @@ public class InputControllerTest {
     BulletController bc;
     Map map;
     Player player;
+    LevelController lc;
+    ZombieAI zombieAI;
     
     @Before
     public void setUp() {
@@ -27,7 +29,9 @@ public class InputControllerTest {
         mc = new MapController(map);
         player = new Player(500,500,"test");
         ac = new ActorController(mc, player);
-        bc = new BulletController(mc);
+        zombieAI = new ZombieAI(ac, player, 5);
+        lc = new LevelController(zombieAI);
+        bc = new BulletController(mc, lc);
         
         ic = new InputController(ac, player, bc);
     }

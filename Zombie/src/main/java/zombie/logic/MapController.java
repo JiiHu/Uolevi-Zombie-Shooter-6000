@@ -41,11 +41,29 @@ public class MapController {
     public Actor checkIfSomethingIsInTile(int x, int y) {
         int tileX = calculateTile(x, 1, divider);
         int tileY = calculateTile(y, 1, divider);
-        Tile tile = map.getTile(tileX, tileY);
+        return checkTile(tileX, tileY);
+    }
+    
+    private Actor checkTile(int col, int row) {
+        Tile tile = map.getTile(col, row);
         if (tile.getActors().isEmpty()) {
             return null;
         }
         return tile.getActors().get(0);
+    }
+    
+    public Actor checkIfSomethingIsInTileOrTileNextToIt(int x, int y) {
+        int col = calculateTile(x, 1, divider);
+        int row = calculateTile(y, 1, divider);
+        
+        Actor actor = checkTile(col, row);
+        
+        int i = 0;
+        while(actor != null || i < 9) {
+            checkTile(col, row);
+        }
+        
+        return actor;
     }
     
     private int calculateTile(int pixels, int spriteSize, int divider) {

@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import zombie.domain.Player;
 import zombie.domain.Zombie;
 import zombie.game.ZombieGame;
+import zombie.logic.HUDController;
 
 /**
  * Class is used to draw image with LibGDX
@@ -19,13 +20,15 @@ public class UserInterface implements ApplicationListener {
 
     SpriteBatch batch;
 
-    private ZombieGame game;
     private Texture background;
     private Texture[] zombieTextures;
     private Sprite playerSprite;
     private InputHandler input;
     private int zombieTextureAmount;
+
+    private ZombieGame game;
     private Player player;
+    private HUDController hud;
     
     public UserInterface(ZombieGame game) {
         zombieTextureAmount = game.getZombieTexturesAmount();
@@ -33,6 +36,7 @@ public class UserInterface implements ApplicationListener {
         this.game = game;
         this.input = new InputHandler(game.getInputController());
         this.player = game.getPlayer();
+        this.hud = game.getHUDController();
     }
 
     @Override
@@ -62,12 +66,12 @@ public class UserInterface implements ApplicationListener {
         game.play();
         
         batch.begin();
-        
-        drawText();
 
         drawBackground();
         drawZombies();
         drawPlayer();
+        
+        drawText();
 
         batch.end();
     }
@@ -80,6 +84,8 @@ public class UserInterface implements ApplicationListener {
     private void drawText() {
         BitmapFont font = new BitmapFont();
         font.setColor(Color.RED);
+        font.draw(batch, "Level: " + hud.levelNumber(), 30, 710);
+        
         font.draw(batch, "playerSprite.getRotation(): "+playerSprite.getRotation(), 200, 140);
         font.draw(batch, "player.getX(): "+player.getX()+"player.getY(): "+player.getY(), 200, 110);
         font.draw(batch, "mouse X: "+Gdx.input.getX()+"mouse Y: "+(720-Gdx.input.getY()), 200, 80);

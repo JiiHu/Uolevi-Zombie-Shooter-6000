@@ -20,7 +20,7 @@ public class MapTest {
     @Test
     public void generatesRightSizedTilesArray() {
         // divider hardcoded into Map.class
-        int divider = 4;
+        int divider = 10;
         // presumption that the map is 1280x720 pixels
         int x = 1280/divider;
         int y = 720/divider;
@@ -55,8 +55,8 @@ public class MapTest {
     
     @Test
     public void getDividerWorks() {
-        // 4 is hardcoded
-        assertEquals(4, map.getDivider());
+        // 10 is hardcoded
+        assertEquals(10, map.getDivider());
     }
     
 }

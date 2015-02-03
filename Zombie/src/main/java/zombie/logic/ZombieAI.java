@@ -2,6 +2,7 @@ package zombie.logic;
 
 import java.util.ArrayList;
 import java.util.Random;
+import zombie.domain.Actor;
 import zombie.domain.Direction;
 import zombie.domain.Place;
 import zombie.domain.Player;
@@ -59,6 +60,15 @@ public class ZombieAI {
      */
     public void removeZombie(Zombie zombie) {
         zombies.remove(zombie);
+    }
+
+    /**
+     * Method will remove the given Actor from the list of zombies
+     * 
+     * @param   actor  Zombie which should be removed
+     */
+    public void removeZombie(Actor actor) {
+        removeZombie((Zombie) actor);
     }
 
     /**

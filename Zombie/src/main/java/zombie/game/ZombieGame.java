@@ -6,6 +6,7 @@ import zombie.domain.Map;
 import zombie.domain.Player;
 import zombie.logic.ActorController;
 import zombie.logic.BulletController;
+import zombie.logic.HUDController;
 import zombie.logic.InputController;
 import zombie.logic.LevelController;
 import zombie.logic.MapController;
@@ -28,6 +29,7 @@ public class ZombieGame {
     private LevelController levelController;
     private InputController inputController;
     private BulletController bulletController;
+    private HUDController hud;
     
     public ZombieGame(int width, int height) {
         this.timePlayed = 0;
@@ -38,8 +40,9 @@ public class ZombieGame {
         this.actorController = new ActorController(mapController, player);
         this.zombieAI = new ZombieAI(actorController, player, zombieTexturesAmount);
         this.levelController = new LevelController(zombieAI);
-        this.bulletController = new BulletController(mapController);
+        this.bulletController = new BulletController(mapController, levelController);
         this.inputController = new InputController(actorController, player, bulletController);
+        this.hud = new HUDController(levelController, player, zombieAI);
     }
     
     /**
@@ -56,7 +59,21 @@ public class ZombieGame {
             levelController.releaseZombie();
         }
     }
-
+    
+    /**
+     * Method returns HUDController
+     * 
+     * @return HUDController
+     */
+    public HUDController getHUDController() {
+        return hud;
+    }
+    
+    /**
+     * Method returns ZombieAI
+     * 
+     * @return zombieAI
+     */
     public ZombieAI getZombieAI() {
         return zombieAI;
     }

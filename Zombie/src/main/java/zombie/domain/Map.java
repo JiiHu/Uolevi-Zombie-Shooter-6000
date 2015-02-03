@@ -17,7 +17,7 @@ public class Map {
     public Map(int width, int height) {
         this.width = width;
         this.height = height;
-        this.divider = 4;
+        this.divider = 10;
         this.tiles = new Tile[width/divider][height/divider];
         for (int i = 0; i < (height / divider); i++) {
             for (int j = 0; j < (width / divider); j++) {
@@ -25,6 +25,25 @@ public class Map {
             }
         }
         makeNonMovableArea();
+    }
+
+    private void makeNonMovableArea() {
+        int padding = 4;
+        int minWidth = padding;
+        int minHeight = padding;
+        int maxWidth = (width / divider) - padding;
+        int maxHeight = (height / divider) - padding;
+        
+        for (int row = 0; row < (height / divider); row++) {
+            for (int col = 0; col < (width / divider); col++) {
+                Tile tile = this.tiles[col][row];
+                // padding around the sides which is unmovable
+                if (row <= minHeight || col <= minWidth || row >= maxHeight || col >= maxWidth) {
+                    tile.setWalkable(false);
+                } 
+                
+            }
+        }
     }
     
     /**
@@ -66,25 +85,6 @@ public class Map {
      */
     public int getDivider() {
         return divider;
-    }
-
-    private void makeNonMovableArea() {
-        int padding = 10;
-        int minWidth = padding;
-        int minHeight = padding;
-        int maxWidth = (width / divider) - padding;
-        int maxHeight = (height / divider) - padding;
-        
-        for (int row = 0; row < (height / divider); row++) {
-            for (int col = 0; col < (width / divider); col++) {
-                Tile tile = this.tiles[col][row];
-                // padding around the sides which is unmovable
-                if (row <= minHeight || col <= minWidth || row >= maxHeight || col >= maxWidth) {
-                    tile.setWalkable(false);
-                } 
-                
-            }
-        }
     }
     
     

@@ -3,6 +3,7 @@
 package zombie.logic;
 
 import zombie.domain.Level;
+import zombie.domain.Zombie;
 
 /**
  * Class to control the level changing and releasing zombies
@@ -58,8 +59,9 @@ public class LevelController {
     /**
      * Method will tell the level that a zombie is killed
      */
-    public void zombieKilled() {
+    public void zombieKilled(Zombie zombie) {
         level.zombieKilled();
+        zombieAI.removeZombie(zombie);
         if (level.isLevelOver()) {
             newLevel();
         }

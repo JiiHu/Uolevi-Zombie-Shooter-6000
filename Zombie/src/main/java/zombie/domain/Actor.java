@@ -81,6 +81,15 @@ public class Actor extends GameObject {
     }
     
     /**
+     * Method tells if the actor is dead
+     * 
+     * @return is the actor dead
+     */
+    public boolean isDead() {
+        return hp <= 0;
+    }
+    
+    /**
     * Method decreases actor's hp
     * 
     * @param   amount   amount that how much the hp is decreased
