@@ -11,7 +11,9 @@ import zombie.logic.LevelController;
 import zombie.logic.MapController;
 import zombie.logic.ZombieAI;
 
-
+/**
+ * Class which includes all the information regarding the game
+ */
 public class ZombieGame {
     
     private Player player;
@@ -40,6 +42,9 @@ public class ZombieGame {
         this.inputController = new InputController(actorController, player, bulletController);
     }
     
+    /**
+     * Method should be called each time something is drawn to the screen
+     */
     public void play() {
         timePlayed++;
         zombieAI.moveZombies();
@@ -56,19 +61,29 @@ public class ZombieGame {
         return zombieAI;
     }
 
+    /**
+     * Method returns the amount of available zombie textures
+     * 
+     * @return amount of available zombie textures
+     */
     public int getZombieTexturesAmount() {
         return zombieTexturesAmount;
     }
     
- 
+    /**
+     * Method returns the Player object
+     * 
+     * @return Player object
+     */
     public Player getPlayer() {
         return player;
     }
     
-    public ActorController getActorController() {
-        return actorController;
-    }
-    
+    /**
+     * Method returns InputController of the game
+     * 
+     * @return InputController of the game
+     */
     public InputController getInputController() {
         return inputController;
     }

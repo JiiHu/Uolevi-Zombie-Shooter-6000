@@ -18,11 +18,6 @@ public class ZombieGameTest {
     }
 
     @Test
-    public void getActionControllerWorks() {
-        assertEquals(ActorController.class, game.getActorController().getClass());
-    }
-
-    @Test
     public void getInputControllerWorks() {
         assertEquals(InputController.class, game.getInputController().getClass());
     }

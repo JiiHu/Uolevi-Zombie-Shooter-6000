@@ -4,6 +4,9 @@ package zombie.game;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
+/**
+ * Class is used to initialize and start the game
+ */
 public class GameLauncher {
     
     private int width;
@@ -14,6 +17,9 @@ public class GameLauncher {
         this.height = height;
     }
     
+    /**
+     * Method to start the game
+     */
     public void start() {
         ZombieGame game = new ZombieGame(width, height);
         
@@ -22,7 +28,7 @@ public class GameLauncher {
 	LwjglApplication app = new LwjglApplication(new zombie.ui.UserInterface(game), config);
     }
     
-    public void configureUI(LwjglApplicationConfiguration config) {
+    private void configureUI(LwjglApplicationConfiguration config) {
         config.title = "Super Uolevi Zombie Shooter 6000 HD";
         config.resizable = false;
         config.width = this.width;
