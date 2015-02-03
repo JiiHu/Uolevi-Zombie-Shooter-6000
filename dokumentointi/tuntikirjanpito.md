@@ -23,5 +23,5 @@
 - 5.5h Zombiet suuntaavat itsensä pelaajaan päin + testejä
 
 ### Ti 3.2.
-- 1h JavaDoc
+- 2.5h JavaDoc
 
