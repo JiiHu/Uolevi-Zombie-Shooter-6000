@@ -14,7 +14,7 @@ public class LevelController {
     private ZombieAI zombieAI;
     
     public LevelController(ZombieAI zombieAI) {
-        level = new Level(0, 0);
+        level = new Level(0, 4);
         this.zombieAI = zombieAI;
         newLevel();
     }
@@ -66,14 +66,12 @@ public class LevelController {
     }
     
     private boolean isLevelOver() {
-        //System.out.println("zombeja: " + zombieAI.getZombies().size());
-        //System.out.println("level loppu: " + level.isLevelOver());
-        
         return level.isLevelOver();
     }
     
     /**
-     * Method will tell the level that a zombie is killed
+     * Method will tell to Level and ZombieAI objects that a zombie 
+     * is killed and checks if new level should be changed
      */
     public void zombieKilled(Zombie zombie) {
         level.zombieKilled();

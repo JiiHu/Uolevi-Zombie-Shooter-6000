@@ -11,14 +11,14 @@ public class Level {
     private int lvlNumber;
     private int zombiesLeftOnLevel;
     private int zombiesUnreleased;
-    private int increment;
+    private double multiplier;
     
     public Level(int lvlNumber, int zombieAmount) { 
         this.zombieAmount = zombieAmount;
         this.lvlNumber = lvlNumber;
         this.zombiesLeftOnLevel = zombieAmount;
         this.zombiesUnreleased = zombieAmount;
-        this.increment = 5;
+        this.multiplier = 1.5;
     }
     
     /**
@@ -60,7 +60,7 @@ public class Level {
      */
     public void newLevel() {
         lvlNumber++;
-        zombieAmount += increment;
+        zombieAmount = (int) (zombieAmount * multiplier);
         zombiesLeftOnLevel = zombieAmount;
         zombiesUnreleased = zombieAmount;
     }

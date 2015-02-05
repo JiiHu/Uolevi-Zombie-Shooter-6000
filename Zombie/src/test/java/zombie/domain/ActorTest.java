@@ -20,6 +20,29 @@ public class ActorTest {
     }
     
     @Test
+    public void actorIsntDeadWhenBorn() {
+        assertEquals(false, actor.isDead());
+    }
+    
+    @Test
+    public void actorDiesWhenHpGoesUnderZeroFirstTime() {
+        actor.setHp(10);
+        boolean didActorDie = actor.decreaseHp(10);
+        
+        assertEquals(true, actor.isDead());
+        assertEquals(true, didActorDie);
+    }
+    
+    @Test
+    public void asd() {
+        assertEquals(100, actor.getHp());
+        actor.setHp(10);
+        assertEquals(10, actor.getHp());
+        actor.setHp(15);
+        assertEquals(15, actor.getHp());
+    }
+    
+    @Test
     public void getHpReturnsCorrectValue() {
         assertEquals(100, actor.getHp());
         actor.setHp(10);

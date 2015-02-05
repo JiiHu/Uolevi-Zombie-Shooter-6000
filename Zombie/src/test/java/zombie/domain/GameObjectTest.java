@@ -21,19 +21,6 @@ public class GameObjectTest {
         go.setSpriteWidth(20);
     }
     
-    @Test
-    public void setCentersWorksAfterSettingSpriteSize() {
-        assertEquals(110, go.getCenterX());
-        assertEquals(110, go.getCenterY());
-        
-        go.setSpriteHeight(40);
-        go.setSpriteWidth(40);
-        
-        assertEquals(120, go.getCenterX());
-        assertEquals(120, go.getCenterY());
-        
-    }
-    
     
     @Test
     public void defaultAngleIsZero() {

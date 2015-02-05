@@ -25,21 +25,17 @@ public class MapTest {
         int x = 1280/divider;
         int y = 720/divider;
         
-        try {
-            map.getTile(x-1, y-1);
-        } catch(Exception e) {
-            assertTrue(false);
-        }
+        Tile tile1 = map.getTile(x-1, y-1);
+        assertFalse(tile1 == null);
         
-        try {
-            map.getTile(x, y);
-            // if the test goes to next line the tile array
-            // was too big because it didn't throw error
-            assertTrue(false);
-        } catch(Exception e) {
-            assertTrue(true);
-        }
+        Tile tile = map.getTile(x, y);
+        assertEquals(null, tile);
         
+    }
+    
+    @Test
+    public void returnsNullWhenGettingTileOutOfBounds() {
+        assertEquals(null, map.getTile(-1, -1));
     }
     
     @Test

@@ -3,8 +3,10 @@ package zombie.logic;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import zombie.domain.Actor;
 import zombie.domain.Map;
 import zombie.domain.Player;
+import zombie.domain.Tile;
 import zombie.domain.Zombie;
 
 public class ZombieAITest {
@@ -26,6 +28,39 @@ public class ZombieAITest {
     
     
     @Test
+    public void getZombiesKilledWorks() {
+        zombieAI.addZombie();
+        zombieAI.addZombie();
+        zombieAI.addZombie();
+        Zombie z1 = zombieAI.getZombies().get(0);
+        Zombie z2 = zombieAI.getZombies().get(1);
+        Zombie z3 = zombieAI.getZombies().get(2);
+        
+        Tile t1 = new Tile(10,10);
+        t1.addActor(z1);
+        z1.setCurrentTile(t1);
+        
+        Tile t2 = new Tile(10,10);
+        t2.addActor(z2);
+        z2.setCurrentTile(t2);
+        
+        Tile t3 = new Tile(10,10);
+        t3.addActor(z3);
+        z3.setCurrentTile(t3);
+        
+        assertEquals(0, zombieAI.getZombiesKilled());
+        
+        zombieAI.removeZombie(z1);
+        assertEquals(1, zombieAI.getZombiesKilled());
+        
+        zombieAI.removeZombie(z2);
+        assertEquals(2, zombieAI.getZombiesKilled());
+        
+        zombieAI.removeZombie(z3);
+        assertEquals(3, zombieAI.getZombiesKilled());
+    }
+    
+    @Test
     public void getZombiesWorks() {
         assertEquals(0, zombieAI.getZombies().size());
         zombieAI.addZombie();
@@ -34,12 +69,37 @@ public class ZombieAITest {
     
 
     @Test
-    public void addAndRemoveZombieWorks() {
+    public void addZombieWorks() {
         assertEquals(0, zombieAI.getZombies().size());
         zombieAI.addZombie();
         assertEquals(1, zombieAI.getZombies().size());
+    }
+
+    @Test
+    public void removeZombieWorks() {
+        zombieAI.addZombie();
         Zombie z = zombieAI.getZombies().get(0);
+        Tile t = new Tile(10,10);
+        
+        t.addActor(z);
+        z.setCurrentTile(t);
+        
         zombieAI.removeZombie(z);
+        assertEquals(0, zombieAI.getZombies().size());
+    }
+
+    @Test
+    public void removeActorZombieWorks() {
+        zombieAI.addZombie();
+        Zombie z = zombieAI.getZombies().get(0);
+        Tile t = new Tile(10,10);
+        
+        t.addActor(z);
+        z.setCurrentTile(t);
+        
+        Actor a = (Actor) z;
+        
+        zombieAI.removeZombie(a);
         assertEquals(0, zombieAI.getZombies().size());
     }
 

@@ -17,30 +17,26 @@ import zombie.logic.ZombieAI;
  */
 public class ZombieGame {
     
-    private Player player;
-    private Map map;
     private long timePlayed;
     private int zombieTexturesAmount;
     
-    private ZombieAI zombieAI;
-    
-    private ActorController actorController;
-    private MapController mapController;
-    private LevelController levelController;
-    private InputController inputController;
-    private BulletController bulletController;
+    private Player player;
     private HUDController hud;
+    private ZombieAI zombieAI;
+    private InputController inputController;
+    private LevelController levelController;
     
     public ZombieGame(int width, int height) {
         this.timePlayed = 0;
         this.zombieTexturesAmount = 5;
         this.player = new Player(width/2, height/2, "assets/player.png");
-        this.map = new Map(width, height);
-        this.mapController = new MapController(map);
-        this.actorController = new ActorController(mapController, player);
+        
+        Map map = new Map(width, height);
+        MapController mapController = new MapController(map);
+        ActorController actorController = new ActorController(mapController, player);
         this.zombieAI = new ZombieAI(actorController, player, zombieTexturesAmount);
         this.levelController = new LevelController(zombieAI);
-        this.bulletController = new BulletController(mapController, levelController);
+        BulletController bulletController = new BulletController(mapController, levelController);
         this.inputController = new InputController(actorController, player, bulletController);
         this.hud = new HUDController(levelController, player, zombieAI);
     }
@@ -54,9 +50,15 @@ public class ZombieGame {
         checkIfZombieShouldBeReleased();
     }
 
+    /**
+     * Method checks if right amount of time has passed so that zombie can be released
+     */
     private void checkIfZombieShouldBeReleased() {
-        if (timePlayed % 100 == 0) {
-            levelController.releaseZombie();
+        if (timePlayed % 300 == 0) {
+            int lvlNumber = hud.levelNumber();
+            for (int i = 0; i < lvlNumber; i++) {
+                levelController.releaseZombie();
+            }
         }
     }
     

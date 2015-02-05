@@ -6,6 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import zombie.domain.Zombie;
 import zombie.logic.ActorController;
+import zombie.logic.HUDController;
 import zombie.logic.InputController;
 
 public class ZombieGameTest {
@@ -15,6 +16,11 @@ public class ZombieGameTest {
     @Before
     public void setUp() {
         game = new ZombieGame(1000, 1000);
+    }
+
+    @Test
+    public void getHUDControllerWorks() {
+        assertEquals(HUDController.class, game.getHUDController().getClass());
     }
 
     @Test
@@ -37,7 +43,7 @@ public class ZombieGameTest {
 
     @Test
     public void playMovesZombies() {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 300; i++) {
             game.play();
         }
         Zombie z = game.getZombieAI().getZombies().get(0);
@@ -51,7 +57,7 @@ public class ZombieGameTest {
     @Test
     public void playWorks() {
         assertEquals(0, game.getZombieAI().getZombies().size());
-        for (int i = 0; i < 99; i++) {
+        for (int i = 0; i < 299; i++) {
             game.play();
         }
         assertEquals(0, game.getZombieAI().getZombies().size());

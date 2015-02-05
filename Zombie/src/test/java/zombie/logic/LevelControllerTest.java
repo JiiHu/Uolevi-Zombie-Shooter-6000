@@ -4,6 +4,7 @@ package zombie.logic;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import zombie.domain.Level;
 import zombie.domain.Map;
 import zombie.domain.Player;
 
@@ -50,12 +51,8 @@ public class LevelControllerTest {
     }
     
     @Test
-    public void zombieKilledWorks() {
-        assertEquals(1, lc.getLevelNumber());
-        for (int i = 0; i < 8; i++) {
-            //lc.zombieKilled();
-        }
-        //assertEquals(2, lc.getLevelNumber());
+    public void getLevelWorks() {
+        assertEquals(Level.class, lc.getLevel().getClass());
     }
 
 }

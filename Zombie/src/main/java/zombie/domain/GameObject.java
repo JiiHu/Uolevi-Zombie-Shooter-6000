@@ -15,22 +15,7 @@ public class GameObject {
     protected int centerY;
     protected int angle = 0;
     
-    public GameObject() {
-        setCenters();
-    }
     
-    private void setCenters() {
-        setCenterX();
-        setCenterY();
-    }
-
-    public int getCenterX() {
-        return centerX;
-    }
-
-    public int getCenterY() {
-        return centerY;
-    }
 
     private void setCenterX() {
         centerX = x + (spriteWidth / 2);
@@ -46,7 +31,6 @@ public class GameObject {
 
     public void setSpriteWidth(int spriteWidth) {
         this.spriteWidth = spriteWidth;
-        setCenters();
     }
 
     public int getSpriteHeight() {
@@ -55,7 +39,6 @@ public class GameObject {
 
     public void setSpriteHeight(int spriteHeight) {
         this.spriteHeight = spriteHeight;
-        setCenters();
     }
     
     public int getTextureAsInt() {
@@ -68,7 +51,6 @@ public class GameObject {
 
     public void setX(int x) {
         this.x = x;
-        setCenters();
     }
 
     public int getY() {
@@ -77,7 +59,6 @@ public class GameObject {
 
     public void setY(int y) {
         this.y = y;
-        setCenters();
     }
 
     public String getTexture() {

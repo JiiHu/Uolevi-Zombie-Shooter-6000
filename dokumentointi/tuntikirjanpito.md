@@ -25,3 +25,5 @@
 ### Ti 3.2.
 - 2.5h JavaDoc
 
+### To 5.2.
+- 4h Bugien korjausta

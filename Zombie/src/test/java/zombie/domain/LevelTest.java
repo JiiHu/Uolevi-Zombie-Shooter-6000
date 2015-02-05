@@ -64,9 +64,14 @@ public class LevelTest {
     
     @Test
     public void newLevelAddsRightAmountOfZombies() {
+        // assumption that multiplier is 1.5
         assertEquals(2, level.getZombieAmount());
         level.newLevel();
-        assertEquals(10, level.getZombieAmount());
+        assertEquals(3, level.getZombieAmount());
+        level.newLevel();
+        assertEquals(4, level.getZombieAmount());
+        level.newLevel();
+        assertEquals(6, level.getZombieAmount());
     }
     
     

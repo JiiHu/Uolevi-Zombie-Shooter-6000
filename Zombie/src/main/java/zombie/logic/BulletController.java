@@ -34,15 +34,14 @@ public class BulletController {
         Actor actor = mc.checkIfSomethingIsInTile(x, y);
         
         if (actor == null || actor instanceof Player) {
-            //System.out.println("player");
             return;
         }
         
         Zombie zombie = (Zombie) actor;
-        shootActor(zombie, b);
+        shootZombie(zombie, b);
     }
     
-    private void shootActor(Zombie zombie, Bullet b) {
+    private void shootZombie(Zombie zombie, Bullet b) {
         int amount = b.getEffectivity();
         boolean wasHitCritical = zombie.decreaseHp(amount);
         if (wasHitCritical) {
