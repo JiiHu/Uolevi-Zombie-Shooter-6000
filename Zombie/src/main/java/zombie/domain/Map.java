@@ -54,7 +54,23 @@ public class Map {
      * @return Tile which is on the desired location
      */
     public Tile getTile(int x, int y) {
+        if (areCoordinatesOutOfBounds(x, y)){
+            return null;
+        }
         return tiles[x][y];
+    }
+    
+    /**
+     * Method checks if given coordinates are out of Map's bounds
+     */
+    private boolean areCoordinatesOutOfBounds(int x, int y) {
+        if (x < 0 || y < 0 ) {
+            return true;
+        }
+        if (x >= (width / divider) || y >= (height / divider)) {
+            return true;
+        }
+        return false;
     }
     
     /**

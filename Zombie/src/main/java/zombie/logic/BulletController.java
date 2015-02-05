@@ -17,7 +17,7 @@ public class BulletController {
     private LevelController levelController;
     
     public BulletController(MapController mc, LevelController levelController) {
-        this.effectivity = 10;
+        this.effectivity = 100;
         this.mc = mc;
         this.levelController = levelController;
     }
@@ -33,15 +33,9 @@ public class BulletController {
         int y = b.getY();
         Actor actor = mc.checkIfSomethingIsInTile(x, y);
         
-        if (actor == null) {
+        if (actor == null || actor instanceof Player) {
+            //System.out.println("player");
             return;
-        }
-        
-        if (actor instanceof Player) {
-            System.out.println("player");
-            return;
-        } else if (actor instanceof Zombie) {
-            System.out.println("zombie");
         }
         
         Zombie zombie = (Zombie) actor;
@@ -50,9 +44,8 @@ public class BulletController {
     
     private void shootActor(Zombie zombie, Bullet b) {
         int amount = b.getEffectivity();
-        zombie.decreaseHp(amount);
-        if (zombie.isDead()) {
-            System.out.println("pitäis poistaa");
+        boolean wasHitCritical = zombie.decreaseHp(amount);
+        if (wasHitCritical) {
             levelController.zombieKilled(zombie);
         }
     }

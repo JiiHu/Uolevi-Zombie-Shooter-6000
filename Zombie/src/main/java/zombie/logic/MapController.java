@@ -46,7 +46,7 @@ public class MapController {
     
     private Actor checkTile(int col, int row) {
         Tile tile = map.getTile(col, row);
-        if (tile.getActors().isEmpty()) {
+        if (tile == null || tile.getActors().isEmpty()) {
             return null;
         }
         return tile.getActors().get(0);

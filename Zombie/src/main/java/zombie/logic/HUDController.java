@@ -2,6 +2,7 @@
 
 package zombie.logic;
 
+import zombie.domain.Level;
 import zombie.domain.Player;
 
 /**
@@ -26,6 +27,15 @@ public class HUDController {
      */
     public int levelNumber() {
         return levelController.getLevelNumber();
+    }
+    
+    public int zombiesKilled() {
+        return zombieAI.getZombiesKilled();
+    }
+    
+    
+    public Level getLevel() {
+        return levelController.getLevel();
     }
 
 }

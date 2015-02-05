@@ -55,6 +55,22 @@ public class LevelController {
     public void newLevel() {
         level.newLevel();
     }
+
+    /**
+     * Method returns Level object
+     * 
+     * @return object containing level information
+     */
+    public Level getLevel() {
+        return level;
+    }
+    
+    private boolean isLevelOver() {
+        //System.out.println("zombeja: " + zombieAI.getZombies().size());
+        //System.out.println("level loppu: " + level.isLevelOver());
+        
+        return level.isLevelOver();
+    }
     
     /**
      * Method will tell the level that a zombie is killed
@@ -62,7 +78,7 @@ public class LevelController {
     public void zombieKilled(Zombie zombie) {
         level.zombieKilled();
         zombieAI.removeZombie(zombie);
-        if (level.isLevelOver()) {
+        if (isLevelOver()) {
             newLevel();
         }
     }

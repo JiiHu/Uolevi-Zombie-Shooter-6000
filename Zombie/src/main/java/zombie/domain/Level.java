@@ -18,7 +18,7 @@ public class Level {
         this.lvlNumber = lvlNumber;
         this.zombiesLeftOnLevel = zombieAmount;
         this.zombiesUnreleased = zombieAmount;
-        this.increment = 8;
+        this.increment = 5;
     }
     
     /**

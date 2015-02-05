@@ -72,6 +72,8 @@ public class UserInterface implements ApplicationListener {
         drawPlayer();
         
         drawText();
+        
+        drawUnimportantStuff();
 
         batch.end();
     }
@@ -80,15 +82,24 @@ public class UserInterface implements ApplicationListener {
         Gdx.gl.glClearColor(255, 255, 255, 0);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
     }
+    
+    private void drawUnimportantStuff() {
+        BitmapFont font = new BitmapFont();
+        font.setColor(Color.BLUE);
+        
+        font.draw(batch, "playerSprite.getRotation(): "+playerSprite.getRotation(), 200, 140);
+        font.draw(batch, "player.getX(): "+player.getX()+", player.getY(): "+player.getY(), 200, 110);
+        font.draw(batch, "mouse X: "+Gdx.input.getX()+", mouse Y: "+(720-Gdx.input.getY()), 200, 80);
+        
+        font.draw(batch, "zombies left on level: "+hud.getLevel().getZombiesLeftOnLevel(), 200, 500);
+        font.draw(batch, "unreleased zombies: "+hud.getLevel().getZombiesUnreleased(), 200, 480);
+    }
 
     private void drawText() {
         BitmapFont font = new BitmapFont();
         font.setColor(Color.RED);
         font.draw(batch, "Level: " + hud.levelNumber(), 30, 710);
-        
-        font.draw(batch, "playerSprite.getRotation(): "+playerSprite.getRotation(), 200, 140);
-        font.draw(batch, "player.getX(): "+player.getX()+"player.getY(): "+player.getY(), 200, 110);
-        font.draw(batch, "mouse X: "+Gdx.input.getX()+"mouse Y: "+(720-Gdx.input.getY()), 200, 80);
+        font.draw(batch, "Zombies killed: " + hud.zombiesKilled(), 100, 710);
     }
     
     private int calculateAngleDifference(int angle, int currentRotation) {
@@ -111,21 +122,19 @@ public class UserInterface implements ApplicationListener {
     public void drawZombie(Zombie zombie) {
         int textureId = zombie.getTextureAsInt();
         Texture texture = zombieTextures[textureId];
-        //batch.draw(texture, zombie.getX(), zombie.getY());
         
         int angle = zombie.getAngle();
         
+        int width = texture.getWidth();
+        int height = texture.getHeight();
+        
         batch.draw(texture, zombie.getX(), zombie.getY(),
-                0, 0, texture.getWidth(), texture.getHeight(),
-                1, 1,
-                angle, 0, 0,
-                texture.getWidth(), texture.getHeight(), false, false);
+                width/2, height/2, width, height, 1, 1, angle,
+                0, 0, width, height, false, false);
         
         // Texture texture, float x, float y,
-        // float originX, float originY, float width, float height,
-        // float scaleX, float scaleY,
-        // float rotation, int srcX, int srcY,
-        //int srcWidth, int srcHeight, boolean flipX, boolean flipY
+        // float originX, float originY, float width, float height, float scaleX, float scaleY, float rotation,
+        // int srcX, int srcY, int srcWidth, int srcHeight, boolean flipX, boolean flipY
     }
 
 

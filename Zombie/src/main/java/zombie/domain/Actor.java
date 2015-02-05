@@ -10,11 +10,13 @@ public class Actor extends GameObject {
     protected int maxHp;
     protected int speed;
     protected Tile currentTile;
+    protected boolean isDead;
     
     public Actor() {
         this.maxHp = 100;
         this.hp = this.maxHp;
         this.speed = 1;
+        this.isDead = false;
         this.spriteWidth = 20;
         this.spriteHeight = 24;
     }
@@ -86,19 +88,25 @@ public class Actor extends GameObject {
      * @return is the actor dead
      */
     public boolean isDead() {
-        return hp <= 0;
+        return this.isDead;
     }
     
     /**
     * Method decreases actor's hp
     * 
     * @param   amount   amount that how much the hp is decreased
+    * @return was the hit critical to kill the actor
     */
-    public void decreaseHp(int amount) {
+    public boolean decreaseHp(int amount) {
         hp -= amount;
         if (hp <= 0) {
             hp = 0;
+            if (!isDead()) {
+                isDead = true;
+                return true;
+            }
         }
+        return false;
     }
     
     /**

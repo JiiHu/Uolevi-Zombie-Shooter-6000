@@ -6,6 +6,7 @@ import zombie.domain.Actor;
 import zombie.domain.Direction;
 import zombie.domain.Place;
 import zombie.domain.Player;
+import zombie.domain.Tile;
 import zombie.domain.Zombie;
 
 /**
@@ -19,15 +20,26 @@ public class ZombieAI {
     private PlaceController placeController;
     private Random random;
     private int textureAmount;
+    private int zombiesKilled;
 
     public ZombieAI(ActorController ac, Player player, int textureAmount) {
         this.ac = ac;
         this.player = player;
         this.textureAmount = textureAmount;
+        this.zombiesKilled = 0;
         
-        random = new Random(19);
-        zombies = new ArrayList<Zombie>();
-        placeController = new PlaceController();
+        this.random = new Random(19);
+        this.zombies = new ArrayList<Zombie>();
+        this.placeController = new PlaceController();
+    }
+    
+    /**
+     * Method tells how many Zombies Player has killed
+     * 
+     * @return amount of killed Zombies
+     */
+    public int getZombiesKilled() {
+        return zombiesKilled;
     }
 
     /**
@@ -59,7 +71,19 @@ public class ZombieAI {
      * @param   zombie  Zombie which should be removed
      */
     public void removeZombie(Zombie zombie) {
+        zombiesKilled++;
         zombies.remove(zombie);
+        removeZombieFromItsTile(zombie);
+    }
+    
+    /**
+     * Method removes Zombie from tile it is set on
+     * 
+     * @param   zombie  which should be removed from it's Tile
+     */
+    private void removeZombieFromItsTile(Zombie zombie) {
+        Tile tile = zombie.getCurrentTile();
+        tile.removeActor(zombie);
     }
 
     /**
