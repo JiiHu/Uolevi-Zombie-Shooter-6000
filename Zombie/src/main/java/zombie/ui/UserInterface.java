@@ -97,9 +97,10 @@ public class UserInterface implements ApplicationListener {
 
     private void drawText() {
         BitmapFont font = new BitmapFont();
-        font.setColor(Color.RED);
+        font.setColor(Color.BLACK);
         font.draw(batch, "Level: " + hud.levelNumber(), 30, 710);
         font.draw(batch, "Zombies killed: " + hud.zombiesKilled(), 100, 710);
+        font.draw(batch, "HP: " + hud.playerHp(), 250, 710);
     }
     
     private int calculateAngleDifference(int angle, int currentRotation) {
@@ -119,7 +120,7 @@ public class UserInterface implements ApplicationListener {
         }
     }
     
-    public void drawZombie(Zombie zombie) {
+    private void drawZombie(Zombie zombie) {
         int textureId = zombie.getTextureAsInt();
         Texture texture = zombieTextures[textureId];
         

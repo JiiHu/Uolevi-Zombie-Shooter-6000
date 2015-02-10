@@ -15,22 +15,56 @@ import zombie.domain.Zombie;
 public class ZombieAI {
 
     private ActorController ac;
+    private PlaceController placeController;
+    private MapController mc;
     private ArrayList<Zombie> zombies;
     private Player player;
-    private PlaceController placeController;
     private Random random;
     private int textureAmount;
     private int zombiesKilled;
+    private int zombieEffectivity;
 
-    public ZombieAI(ActorController ac, Player player, int textureAmount) {
+    public ZombieAI(ActorController ac, MapController mc, Player player, int textureAmount) {
         this.ac = ac;
+        this.mc = mc;
         this.player = player;
         this.textureAmount = textureAmount;
         this.zombiesKilled = 0;
+        this.zombieEffectivity = 2;
         
         this.random = new Random(19);
         this.zombies = new ArrayList<Zombie>();
         this.placeController = new PlaceController();
+    }
+    
+    /**
+     * Method for checking if player is next to a Zombie
+     * 
+     * @param   zombie    Zombie which surroundings are checked
+     */
+    private void checkIfPlayerIsNextToZombie(Zombie zombie) {
+        int playerCol = player.getCurrentTile().getCol();
+        int playerRow = player.getCurrentTile().getRow();
+        
+        int zombieCol = zombie.getCurrentTile().getCol();
+        int zombieRow = zombie.getCurrentTile().getRow();
+        
+        boolean playerIsClose = isPlayerCloseEnoughToGetHit(playerCol, playerRow, zombieCol, zombieRow);
+        
+        if (playerIsClose) {
+            player.decreaseHp(zombieEffectivity);
+        }
+        
+    }
+    
+    private boolean isPlayerCloseEnoughToGetHit(int playerCol, int playerRow, int zombieCol, int zombieRow) {
+        boolean col = areValuesCloseEnough(playerCol, zombieCol);
+        boolean row = areValuesCloseEnough(playerRow, zombieRow);
+        return row && col;
+    }
+    
+    private boolean areValuesCloseEnough(int player, int zombie) {
+        return player == zombie || player == zombie-1 || player == zombie+1;
     }
     
     /**
@@ -102,6 +136,7 @@ public class ZombieAI {
         for (Zombie zombie : zombies) {
             moveZombieTowardsPlayer(zombie);
             ac.rotateZombie(zombie);
+            checkIfPlayerIsNextToZombie(zombie);
         }
     }
 

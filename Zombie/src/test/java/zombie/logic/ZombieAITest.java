@@ -23,7 +23,7 @@ public class ZombieAITest {
         map = new Map(1280, 720);
         mc = new MapController(map);
         ac = new ActorController(mc, player);
-        zombieAI = new ZombieAI(ac, player, 5);
+        zombieAI = new ZombieAI(ac, mc, player, 5);
     }
     
     
@@ -109,6 +109,8 @@ public class ZombieAITest {
         Zombie z = zombieAI.getZombies().get(0);
         int zX1 = z.getX();
         int zY1 = z.getY();
+        
+        mc.updateActorsTile(player);
         zombieAI.moveZombies();
         int zX2 = z.getX();
         int zY2 = z.getY();
@@ -131,6 +133,7 @@ public class ZombieAITest {
             originalPosition[i][1] = z.getY();
         }
         
+        mc.updateActorsTile(player);
         zombieAI.moveZombies();
         
         for (int i = 0; i < amount; i++) {

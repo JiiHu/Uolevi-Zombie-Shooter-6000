@@ -3,7 +3,9 @@ package zombie.logic;
 
 import zombie.domain.Actor;
 import zombie.domain.Map;
+import zombie.domain.Player;
 import zombie.domain.Tile;
+import zombie.domain.Zombie;
 
 /**
  * Class to control the map
@@ -52,19 +54,39 @@ public class MapController {
         return tile.getActors().get(0);
     }
     
-    public Actor checkIfSomethingIsInTileOrTileNextToIt(int x, int y) {
+    /**
+     * Method for checking if something (Zombie) is next to the player
+     * 
+     * @param   x   Coordinate in pixels on X axis
+     * @param   y   Coordinate in pixels on Y axis
+     * @return is player in the Tile next to coordinates
+     */
+    public boolean checkIfPlayerIsInTileOrTileNextToIt(int x, int y) {
         int col = calculateTile(x, 1, divider);
         int row = calculateTile(y, 1, divider);
         
-        Actor actor = checkTile(col, row);
-        
-        int i = 0;
-        while(actor != null || i < 9) {
-            checkTile(col, row);
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                if (i == 0 && j == 0) continue;
+                Actor actor = checkTile(row+i, col+j);
+                if (actor != null && actor instanceof Player) {
+                    return true;
+                }
+            }
         }
-        
-        return actor;
+        return false;
     }
+    
+    /**
+     * Method for checking if Zombie is next to the player
+     * 
+     * @param   z   zombie which position is checked
+     * @return is player close to the zombie
+     */
+    public boolean checkIfPlayerIsInTileOrTileNextToIt(Zombie z) {
+        return checkIfPlayerIsInTileOrTileNextToIt(z.getX(), z.getY());
+    }
+    
     
     private int calculateTile(int pixels, int spriteSize, int divider) {
         return (pixels + (spriteSize / 2)) / divider; 
@@ -98,5 +120,4 @@ public class MapController {
         }
         return tile.isWalkable();
     }
-    
 }

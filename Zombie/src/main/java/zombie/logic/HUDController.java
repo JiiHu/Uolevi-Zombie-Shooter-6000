@@ -38,4 +38,8 @@ public class HUDController {
         return levelController.getLevel();
     }
 
+    public String playerHp() {
+        return player.getHp() + " / " + player.getMaxHp();
+    }
+
 }

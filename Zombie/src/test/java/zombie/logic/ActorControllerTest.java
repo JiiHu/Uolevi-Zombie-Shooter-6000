@@ -25,7 +25,7 @@ public class ActorControllerTest {
         player = new Player(50, 50, "test");
         ac = new ActorController(mc, player);
         speed = player.getSpeed();
-        zombieAI = new ZombieAI(ac, player, 5);
+        zombieAI = new ZombieAI(ac, mc, player, 5);
     }
     
     @Test

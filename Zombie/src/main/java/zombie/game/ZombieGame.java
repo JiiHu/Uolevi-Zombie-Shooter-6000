@@ -34,27 +34,32 @@ public class ZombieGame {
         Map map = new Map(width, height);
         MapController mapController = new MapController(map);
         ActorController actorController = new ActorController(mapController, player);
-        this.zombieAI = new ZombieAI(actorController, player, zombieTexturesAmount);
+        this.zombieAI = new ZombieAI(actorController, mapController, player, zombieTexturesAmount);
         this.levelController = new LevelController(zombieAI);
         BulletController bulletController = new BulletController(mapController, levelController);
         this.inputController = new InputController(actorController, player, bulletController);
         this.hud = new HUDController(levelController, player, zombieAI);
+        
+        mapController.updateActorsTile(player);
     }
     
     /**
      * Method should be called each time something is drawn to the screen
      */
     public void play() {
-        timePlayed++;
-        zombieAI.moveZombies();
-        checkIfZombieShouldBeReleased();
+        if (!player.isDead()) {
+            timePlayed++;
+            zombieAI.moveZombies();
+            checkIfZombieShouldBeReleased();
+        }
     }
-
+    
     /**
      * Method checks if right amount of time has passed so that zombie can be released
      */
     private void checkIfZombieShouldBeReleased() {
         if (timePlayed % 300 == 0) {
+            player.increaseHp(2);
             int lvlNumber = hud.levelNumber();
             for (int i = 0; i < lvlNumber; i++) {
                 levelController.releaseZombie();

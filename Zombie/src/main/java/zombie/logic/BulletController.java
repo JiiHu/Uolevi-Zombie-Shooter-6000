@@ -17,7 +17,7 @@ public class BulletController {
     private LevelController levelController;
     
     public BulletController(MapController mc, LevelController levelController) {
-        this.effectivity = 100;
+        this.effectivity = 40;
         this.mc = mc;
         this.levelController = levelController;
     }

@@ -17,14 +17,6 @@ public class GameObject {
     
     
 
-    private void setCenterX() {
-        centerX = x + (spriteWidth / 2);
-    }
-
-    private void setCenterY() {
-        centerY = y + (spriteHeight / 2);
-    }
-
     public int getSpriteWidth() {
         return spriteWidth;
     }

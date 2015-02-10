@@ -27,3 +27,6 @@
 
 ### To 5.2.
 - 4h Bugien korjausta
+
+### Ti 10.2.
+- 2h Pelaaja menettää HP:ta jos Zombie tulee liian lähelle

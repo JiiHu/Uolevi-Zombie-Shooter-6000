@@ -23,7 +23,7 @@ public class LevelControllerTest {
         mc = new MapController(map);
         player = new Player(500,500,"test");
         ac = new ActorController(mc, player);
-        zombieAI = new ZombieAI(ac,player,5);
+        zombieAI = new ZombieAI(ac, mc, player, 5);
         lc = new LevelController(zombieAI);
     }
     

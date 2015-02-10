@@ -25,7 +25,7 @@ public class BulletControllerTest {
         mc = new MapController(map);
         player = new Player(500,500,"test");
         ac = new ActorController(mc, player);
-        zombieAI = new ZombieAI(ac,player,5);
+        zombieAI = new ZombieAI(ac, mc, player, 5);
         lc = new LevelController(zombieAI);
         bc = new BulletController(mc, lc);
     }
@@ -35,6 +35,7 @@ public class BulletControllerTest {
         zombieAI.addZombie();
         Zombie z = zombieAI.getZombies().get(0);
         
+        mc.updateActorsTile(player);
         zombieAI.moveZombies();
         
         int x = z.getX();
