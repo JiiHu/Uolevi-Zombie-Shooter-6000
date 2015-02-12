@@ -118,6 +118,7 @@ public class ZombieAI {
     private void removeZombieFromItsTile(Zombie zombie) {
         Tile tile = zombie.getCurrentTile();
         tile.removeActor(zombie);
+        zombie.setCurrentTile(null);
     }
 
     /**

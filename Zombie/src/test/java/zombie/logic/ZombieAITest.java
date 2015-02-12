@@ -26,6 +26,20 @@ public class ZombieAITest {
         zombieAI = new ZombieAI(ac, mc, player, 5);
     }
     
+    @Test
+    public void removeZombieRemovesZombieFromItsTile() {
+        zombieAI.addZombie();
+        Zombie z = zombieAI.getZombies().get(0);
+        
+        Tile t = new Tile(10,10);
+        t.addActor(z);
+        z.setCurrentTile(t);
+        
+        zombieAI.removeZombie(z);
+        
+        assertEquals(0, t.getActors().size());
+        assertEquals(null, z.getCurrentTile());
+    }
     
     @Test
     public void getZombiesKilledWorks() {

@@ -9,6 +9,7 @@ import zombie.domain.Direction;
 import zombie.domain.Map;
 import zombie.domain.Player;
 import zombie.domain.Tile;
+import zombie.domain.Zombie;
 
 public class MapControllerTest {
     
@@ -27,6 +28,18 @@ public class MapControllerTest {
         tile = new Tile(10,10);
         player = new Player(10, 10, "test");
         ac = new ActorController(mc, player);
+    }
+    
+    @Test
+    public void checkIfPlayerIsInTileOrNextToItReturnsFalseIfPlayerIsntClose() {
+        boolean playerIsClose = mc.checkIfPlayerIsInTileOrTileNextToIt(400, 20);
+        assertFalse(playerIsClose);
+    }
+    @Test
+    public void checkIfPlayerIsInTileOrNextToItReturnsFalseToZombieIfPlayerIsntClose() {
+        Zombie z = new Zombie(5,5,"test");
+        boolean playerIsClose = mc.checkIfPlayerIsInTileOrTileNextToIt(z);
+        assertFalse(playerIsClose);
     }
     
     @Test

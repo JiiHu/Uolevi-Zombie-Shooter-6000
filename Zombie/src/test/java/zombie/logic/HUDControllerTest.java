@@ -29,6 +29,11 @@ public class HUDControllerTest {
         lc = new LevelController(zombieAI);
         hud = new HUDController(lc, player, zombieAI);
     }
+    
+    @Test
+    public void playerHpWorks() {
+        assertEquals("100 / 100", hud.playerHp());
+    }
 
 
     @Test

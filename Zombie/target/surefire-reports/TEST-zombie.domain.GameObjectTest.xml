@@ -63,10 +63,10 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="zombie.domain.GameObjectTest" name="getTextureAsIntReturnsCorrectValue" time="0"/>
-  <testcase classname="zombie.domain.GameObjectTest" name="textureSetsAndGetsCorrectly" time="0"/>
   <testcase classname="zombie.domain.GameObjectTest" name="ySetsAndGetsCorrectly" time="0"/>
   <testcase classname="zombie.domain.GameObjectTest" name="xSetsAndGetsCorrectly" time="0"/>
   <testcase classname="zombie.domain.GameObjectTest" name="defaultAngleIsZero" time="0"/>
   <testcase classname="zombie.domain.GameObjectTest" name="spriteSizesGetAndSetWork" time="0"/>
+  <testcase classname="zombie.domain.GameObjectTest" name="textureSetsAndGetsCorrectly" time="0"/>
+  <testcase classname="zombie.domain.GameObjectTest" name="getTextureAsIntReturnsCorrectValue" time="0"/>
 </testsuite>
