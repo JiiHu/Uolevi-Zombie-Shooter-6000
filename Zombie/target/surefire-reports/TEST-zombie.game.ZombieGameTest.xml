@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="6" failures="0" name="zombie.game.ZombieGameTest" time="0.007" errors="0" skipped="0">
+<testsuite tests="8" failures="0" name="zombie.game.ZombieGameTest" time="0.001" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_25\jre\bin"/>
@@ -63,10 +63,12 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="zombie.game.ZombieGameTest" name="getHUDControllerWorks" time="0.001"/>
-  <testcase classname="zombie.game.ZombieGameTest" name="getInputControllerWorks" time="0.001"/>
-  <testcase classname="zombie.game.ZombieGameTest" name="getZombieTexturesAmountWorks" time="0.002"/>
-  <testcase classname="zombie.game.ZombieGameTest" name="playMovesZombies" time="0.001"/>
+  <testcase classname="zombie.game.ZombieGameTest" name="playerHpIsIncreasedAutomatically" time="0"/>
+  <testcase classname="zombie.game.ZombieGameTest" name="playReturnsTrueOnStart" time="0"/>
+  <testcase classname="zombie.game.ZombieGameTest" name="playMovesZombies" time="0"/>
   <testcase classname="zombie.game.ZombieGameTest" name="playWorks" time="0"/>
-  <testcase classname="zombie.game.ZombieGameTest" name="playerGoesCenterOfTheScreen" time="0.001"/>
+  <testcase classname="zombie.game.ZombieGameTest" name="getHUDControllerWorks" time="0"/>
+  <testcase classname="zombie.game.ZombieGameTest" name="getInputControllerWorks" time="0"/>
+  <testcase classname="zombie.game.ZombieGameTest" name="getZombieTexturesAmountWorks" time="0"/>
+  <testcase classname="zombie.game.ZombieGameTest" name="playerGoesCenterOfTheScreen" time="0"/>
 </testsuite>

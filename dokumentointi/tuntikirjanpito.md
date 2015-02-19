@@ -30,3 +30,6 @@
 
 ### Ti 10.2.
 - 2h Pelaaja menettää HP:ta jos Zombie tulee liian lähelle
+
+### To 19.2.
+- 3h Zombie-spritet muuttuu niiden HP:n mukaan, pelaaja ei voi pitää hiirtä pohjassa ampuessaan, Game Over -ruutu

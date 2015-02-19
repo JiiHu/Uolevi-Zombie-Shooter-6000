@@ -4,8 +4,8 @@ package zombie.game;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import zombie.domain.Player;
 import zombie.domain.Zombie;
-import zombie.logic.ActorController;
 import zombie.logic.HUDController;
 import zombie.logic.InputController;
 
@@ -18,6 +18,22 @@ public class ZombieGameTest {
         game = new ZombieGame(1000, 1000);
     }
 
+    @Test
+    public void playerHpIsIncreasedAutomatically() {
+        Player player = game.getPlayer();
+        player.decreaseHp(5);
+        assertEquals(95, player.getHp());
+        for (int i = 0; i < 300; i++) {
+            game.play();
+        }
+        assertEquals(97, player.getHp());
+    }
+
+    @Test
+    public void playReturnsTrueOnStart() {
+        assertEquals(true, game.play());
+    }
+    
     @Test
     public void getHUDControllerWorks() {
         assertEquals(HUDController.class, game.getHUDController().getClass());

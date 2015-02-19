@@ -21,7 +21,7 @@ public class UserInterface implements ApplicationListener {
     SpriteBatch batch;
 
     private Texture background;
-    private Texture[] zombieTextures;
+    private Texture[][] zombieTextures;
     private Sprite playerSprite;
     private InputHandler input;
     private int zombieTextureAmount;
@@ -32,7 +32,7 @@ public class UserInterface implements ApplicationListener {
     
     public UserInterface(ZombieGame game) {
         zombieTextureAmount = game.getZombieTexturesAmount();
-        zombieTextures = new Texture[zombieTextureAmount+1];
+        zombieTextures = new Texture[zombieTextureAmount+1][4];
         this.game = game;
         this.input = new InputHandler(game.getInputController());
         this.player = game.getPlayer();
@@ -49,7 +49,9 @@ public class UserInterface implements ApplicationListener {
     private void createTextures() {
         background = new Texture(Gdx.files.internal("assets/background.jpg"));    
         for (int i = 1; i <= zombieTextureAmount; i++) {
-            zombieTextures[i] = new Texture(Gdx.files.internal("assets/zombie-"+i+".png"));
+            for (int j = 0; j < 4; j++) {
+                zombieTextures[i][j] = new Texture(Gdx.files.internal("assets/zombie-"+i+"-"+(j+1)+".png"));
+            }
         }
     }
 
@@ -63,17 +65,19 @@ public class UserInterface implements ApplicationListener {
         clearScreen();
         
         input.lookForInput();
-        game.play();
+        boolean playerIsAlive = game.play();
         
         batch.begin();
 
         drawBackground();
         drawZombies();
         drawPlayer();
-        
         drawText();
         
-        drawUnimportantStuff();
+        if(!playerIsAlive) {
+            drawGameOver();
+        }
+        //drawUnimportantStuff();
 
         batch.end();
     }
@@ -83,6 +87,15 @@ public class UserInterface implements ApplicationListener {
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
     }
     
+    private void drawGameOver() {
+        BitmapFont font = new BitmapFont();
+        font.setColor(Color.RED);
+        font.setScale(3);
+        font.draw(batch, "GAME OVER", 500, 450);
+        font.draw(batch, "Level: " + hud.levelNumber(), 550, 400);
+        font.draw(batch, "Zombies killed: " + hud.zombiesKilled(), 470, 350);
+    }
+    
     private void drawUnimportantStuff() {
         BitmapFont font = new BitmapFont();
         font.setColor(Color.BLUE);
@@ -90,9 +103,6 @@ public class UserInterface implements ApplicationListener {
         font.draw(batch, "playerSprite.getRotation(): "+playerSprite.getRotation(), 200, 140);
         font.draw(batch, "player.getX(): "+player.getX()+", player.getY(): "+player.getY(), 200, 110);
         font.draw(batch, "mouse X: "+Gdx.input.getX()+", mouse Y: "+(720-Gdx.input.getY()), 200, 80);
-        
-        font.draw(batch, "zombies left on level: "+hud.getLevel().getZombiesLeftOnLevel(), 200, 500);
-        font.draw(batch, "unreleased zombies: "+hud.getLevel().getZombiesUnreleased(), 200, 480);
     }
 
     private void drawText() {
@@ -122,7 +132,9 @@ public class UserInterface implements ApplicationListener {
     
     private void drawZombie(Zombie zombie) {
         int textureId = zombie.getTextureAsInt();
-        Texture texture = zombieTextures[textureId];
+        int bloodSprite = getZombieBloodSpriteId(zombie.getHp());
+        
+        Texture texture = zombieTextures[textureId][bloodSprite];
         
         int angle = zombie.getAngle();
         
@@ -136,6 +148,18 @@ public class UserInterface implements ApplicationListener {
         // Texture texture, float x, float y,
         // float originX, float originY, float width, float height, float scaleX, float scaleY, float rotation,
         // int srcX, int srcY, int srcWidth, int srcHeight, boolean flipX, boolean flipY
+    }
+
+    private int getZombieBloodSpriteId(int hp) {
+        if (hp >= 80) {
+            return 0;
+        } else if (hp >= 50) {
+            return 1;
+        } else if (hp >= 25) {
+            return 2;
+        } else {
+            return 3;
+        }
     }
 
 

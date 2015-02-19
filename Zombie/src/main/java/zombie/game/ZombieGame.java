@@ -46,13 +46,14 @@ public class ZombieGame {
     /**
      * Method should be called each time something is drawn to the screen
      */
-    public void play() {
+    public boolean play() {
         if (player.isDead()) {
-            return;
+            return false;
         }
         timePlayed++;
         zombieAI.moveZombies();
         checkIfZombieShouldBeReleased();
+        return true;
     }
     
     /**

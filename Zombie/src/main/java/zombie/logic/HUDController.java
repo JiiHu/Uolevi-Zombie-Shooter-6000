@@ -6,7 +6,7 @@ import zombie.domain.Level;
 import zombie.domain.Player;
 
 /**
- * Class for easy access to the all data which can be shown to the heads-up display
+ * Class for easy access to the all data which can be shown on the heads-up display
  */
 public class HUDController {
     
@@ -29,15 +29,20 @@ public class HUDController {
         return levelController.getLevelNumber();
     }
     
+    /**
+     * Method returns amount of killed zombies
+     * 
+     * @return amount of killed zombies
+     */
     public int zombiesKilled() {
         return zombieAI.getZombiesKilled();
     }
     
-    
-    public Level getLevel() {
-        return levelController.getLevel();
-    }
-
+    /**
+     * Method returns Player's Hp and its MaxHp
+     * 
+     * @return Player's Hp and its MaxHp
+     */
     public String playerHp() {
         return player.getHp() + " / " + player.getMaxHp();
     }

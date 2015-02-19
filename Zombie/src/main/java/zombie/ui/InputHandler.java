@@ -12,10 +12,12 @@ public class InputHandler {
     
     private InputController inputController;
     private int height;
+    private boolean mouseWasPressedLastTime;
     
     public InputHandler(InputController inputController) {
         this.inputController = inputController;
         this.height = 720;
+        this.mouseWasPressedLastTime = false;
     }
     
     /**
@@ -31,7 +33,12 @@ public class InputHandler {
         int y = height - Gdx.input.getY();
         
         if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
-            inputController.mouseClicked(x, y);
+            if (!mouseWasPressedLastTime) {
+                inputController.mouseClicked(x, y);
+                mouseWasPressedLastTime = true;
+            }
+        } else {
+            mouseWasPressedLastTime = false;
         }
         
         inputController.mousePosition(x, y);

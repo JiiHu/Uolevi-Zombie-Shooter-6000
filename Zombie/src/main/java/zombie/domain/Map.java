@@ -17,7 +17,7 @@ public class Map {
     public Map(int width, int height) {
         this.width = width;
         this.height = height;
-        this.divider = 10;
+        this.divider = 16;
         this.tiles = new Tile[width/divider][height/divider];
         for (int i = 0; i < (height / divider); i++) {
             for (int j = 0; j < (width / divider); j++) {
@@ -28,7 +28,7 @@ public class Map {
     }
 
     private void makeNonMovableArea() {
-        int padding = 4;
+        int padding = 2;
         int minWidth = padding;
         int minHeight = padding;
         int maxWidth = (width / divider) - padding;
