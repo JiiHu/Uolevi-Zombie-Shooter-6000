@@ -10,15 +10,22 @@ public class Actor extends GameObject {
     protected int maxHp;
     protected int speed;
     protected Tile currentTile;
-    protected boolean isDead;
+    protected boolean dead;
     
     public Actor() {
         this.maxHp = 100;
         this.hp = this.maxHp;
         this.speed = 1;
-        this.isDead = false;
+        this.dead = false;
         this.spriteWidth = 20;
         this.spriteHeight = 24;
+    }
+    
+    /**
+     * Method for setting actor alive
+     */
+    public void setAlive() {
+        this.dead = false;
     }
 
     /**
@@ -88,7 +95,7 @@ public class Actor extends GameObject {
      * @return is the actor dead
      */
     public boolean isDead() {
-        return this.isDead;
+        return this.dead;
     }
     
     /**
@@ -102,7 +109,7 @@ public class Actor extends GameObject {
         if (hp <= 0) {
             hp = 0;
             if (!isDead()) {
-                isDead = true;
+                dead = true;
                 return true;
             }
         }
@@ -162,7 +169,7 @@ public class Actor extends GameObject {
     * Method moves actor left as many pixels as actor's speed is
     */
     public void moveLeft() {
-        this.x -= speed ;
+        this.x -= speed;
     }
     
     

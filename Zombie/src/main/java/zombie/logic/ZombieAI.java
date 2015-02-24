@@ -32,7 +32,7 @@ public class ZombieAI {
         this.zombiesKilled = 0;
         this.zombieEffectivity = 2;
         
-        this.random = new Random(19);
+        this.random = new Random();
         this.zombies = new ArrayList<Zombie>();
         this.placeController = new PlaceController();
     }
@@ -64,7 +64,7 @@ public class ZombieAI {
     }
     
     private boolean areValuesCloseEnough(int player, int zombie) {
-        return player == zombie || player == zombie-1 || player == zombie+1;
+        return player == zombie || player == zombie - 1 || player == zombie + 1;
     }
     
     /**
@@ -86,7 +86,7 @@ public class ZombieAI {
     }
     
     private int randomZombieTextureNumber() {
-        return random.nextInt(textureAmount)+1;
+        return random.nextInt(textureAmount) + 1;
     }
 
     /**
@@ -95,7 +95,7 @@ public class ZombieAI {
     public void addZombie() {
         Place place = placeController.getRandomPlace();
         int textureNumber = randomZombieTextureNumber();
-        Zombie zombie = new Zombie(place.getX(), place.getY(), textureNumber+"");
+        Zombie zombie = new Zombie(place.getX(), place.getY(), textureNumber + "");
         zombies.add(zombie);
     }
 
@@ -159,6 +159,14 @@ public class ZombieAI {
         } else if (playerY > zombieY) {
             ac.moveActor(zombie, Direction.UP);
         }        
+    }
+    
+    /**
+     * Method for reseting zombies to zero
+     */
+    public void resetZombies() {
+        this.zombies.clear();
+        this.zombiesKilled = 0;
     }
 
 }

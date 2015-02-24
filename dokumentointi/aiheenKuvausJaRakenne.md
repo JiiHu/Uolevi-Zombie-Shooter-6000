@@ -17,8 +17,8 @@ Pelatessaan pelaaja voi ampua Zombeja hiiren vasemmalla painikkeella, tähdätä
 
 ## Rakenne
 
+Peli käynnistetään kutsumalla GameLauncher-luokan olion start()-metodia. Tämä tekee uuden ZombieGame-objektin (myöh. game), joka sisältää kaiken peliin liittyvän sekä tarvittavat Lwjgl-objektit graafisen käyttöliittymän käyttämiseen. UserInterface-luokan objekti (myöh. UI) sisältää render()-metodin, jonka sisällä olevaa koodia kutsutaan joka kerta kun peli piirtää uuden ruudun.
 
-
-
-
-
+UI kutsuu jokaisella piirtokerralla:
+- game:n play()-metodia, joka tarkistaa ettei pelaaja ole kuollut sekä liikuttaa zombeja pelaajaa lähemmäs
+- InputControllerin lookForInput()-metodia, joka välittää pelaajan liikkumisen eteenpäin oikeille objekteille

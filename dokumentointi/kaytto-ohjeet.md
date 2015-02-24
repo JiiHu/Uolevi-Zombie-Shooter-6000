@@ -1,0 +1,1 @@
+Peliä pelataan ohjaamalla pelihahmoa WASD-näppäimillä. Zombeja ammutaan klikkaamalla hiiren vasenta painiketta Zombien päällä.

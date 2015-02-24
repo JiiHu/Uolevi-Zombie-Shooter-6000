@@ -24,17 +24,17 @@ public class PlaceController {
         int amount = 10;
         // values are hardcoded with the presumption
         // that the map size is 1280x720 pixels
-        int[][] coordinates = { {40,50},
-                                {40,400},
-                                {40,650},
-                                {100,40},
-                                {500,40},
-                                {1200,40},
-                                {1230,600},
-                                {1230,40},
-                                {800,660},
-                                {200,660}
-                                };
+        int[][] coordinates = { {40, 50},
+                                {40, 400},
+                                {40, 650},
+                                {100, 40},
+                                {500, 40},
+                                {1200, 40},
+                                {1230, 600},
+                                {1230, 40},
+                                {800, 660},
+                                {200, 660}
+        };
                 
         for (int i = 0; i < amount; i++) {
             int[] coords = coordinates[i];

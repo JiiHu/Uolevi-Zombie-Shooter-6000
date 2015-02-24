@@ -33,3 +33,6 @@
 
 ### To 19.2.
 - 3h Zombie-spritet muuttuu niiden HP:n mukaan, pelaaja ei voi pitää hiirtä pohjassa ampuessaan, Game Over -ruutu
+
+### Ti 24.2.
+- 4h Aloitusruutu, pelin viimeistelyä

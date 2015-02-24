@@ -19,6 +19,10 @@ public class ZombieGame {
     
     private long timePlayed;
     private int zombieTexturesAmount;
+    private boolean hasStarted;
+    
+    private int width;
+    private int height;
     
     private Player player;
     private HUDController hud;
@@ -27,9 +31,13 @@ public class ZombieGame {
     private LevelController levelController;
     
     public ZombieGame(int width, int height) {
+        this.width = width;
+        this.height = height;
+        
         this.timePlayed = 0;
         this.zombieTexturesAmount = 5;
-        this.player = new Player(width/2, height/2, "assets/player.png");
+        this.hasStarted = false;
+        this.player = new Player(width / 2, height / 2, "assets/player.png");
         
         Map map = new Map(width, height);
         MapController mapController = new MapController(map);
@@ -42,6 +50,27 @@ public class ZombieGame {
         
         mapController.updateActorsTile(player);
     }
+
+    /**
+     * Method returns has the game started
+     * 
+     * @return has the game started
+     */
+    public boolean hasStarted() {
+        timePlayed++;
+        if (timePlayed > 250) {
+            startGame();
+        }
+        return hasStarted;
+    }
+    
+    /**
+     * Method starts the game
+     */
+    public void startGame() {
+        this.hasStarted = true;
+    }
+    
     
     /**
      * Method should be called each time something is drawn to the screen
@@ -112,6 +141,18 @@ public class ZombieGame {
      */
     public InputController getInputController() {
         return inputController;
+    }
+    
+    /**
+     * Method resets the game so that it can be started from scratch
+     */
+    public void resetEverything() {
+        this.zombieAI.resetZombies();
+        this.levelController.resetLevel();
+        this.player.setHp(100);
+        this.player.setAlive();
+        this.player.setX(width / 2);
+        this.player.setY(height / 2);
     }
     
 }

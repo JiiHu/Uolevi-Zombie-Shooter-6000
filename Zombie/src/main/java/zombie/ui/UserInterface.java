@@ -21,10 +21,12 @@ public class UserInterface implements ApplicationListener {
     SpriteBatch batch;
 
     private Texture background;
+    private Texture startscreen;
     private Texture[][] zombieTextures;
     private Sprite playerSprite;
     private InputHandler input;
     private int zombieTextureAmount;
+    private int timeSinceDeath;
 
     private ZombieGame game;
     private Player player;
@@ -32,11 +34,12 @@ public class UserInterface implements ApplicationListener {
     
     public UserInterface(ZombieGame game) {
         zombieTextureAmount = game.getZombieTexturesAmount();
-        zombieTextures = new Texture[zombieTextureAmount+1][4];
+        zombieTextures = new Texture[zombieTextureAmount + 1][4];
         this.game = game;
         this.input = new InputHandler(game.getInputController());
         this.player = game.getPlayer();
         this.hud = game.getHUDController();
+        this.timeSinceDeath = 0;
     }
 
     @Override
@@ -48,9 +51,10 @@ public class UserInterface implements ApplicationListener {
     
     private void createTextures() {
         background = new Texture(Gdx.files.internal("assets/background.jpg"));    
+        startscreen = new Texture(Gdx.files.internal("assets/startscreen.jpg"));    
         for (int i = 1; i <= zombieTextureAmount; i++) {
             for (int j = 0; j < 4; j++) {
-                zombieTextures[i][j] = new Texture(Gdx.files.internal("assets/zombie-"+i+"-"+(j+1)+".png"));
+                zombieTextures[i][j] = new Texture(Gdx.files.internal("assets/zombie-" + i + "-" + (j + 1) + ".png"));
             }
         }
     }
@@ -63,23 +67,36 @@ public class UserInterface implements ApplicationListener {
     @Override
     public void render() {
         clearScreen();
-        
         input.lookForInput();
-        boolean playerIsAlive = game.play();
-        
         batch.begin();
-
-        drawBackground();
-        drawZombies();
-        drawPlayer();
-        drawText();
-        
-        if(!playerIsAlive) {
-            drawGameOver();
-        }
-        //drawUnimportantStuff();
-
+        drawEverything();
         batch.end();
+    }
+
+    private void drawEverything() {
+        if (game.hasStarted()) {
+            boolean playerIsAlive = game.play();
+            drawBackground();
+            drawZombies();
+            drawPlayer();
+            drawText();
+            if (!playerIsAlive) {
+                drawGameOver();
+                lookIfZombieGameObjectShouldBeReseted();
+            }
+            //drawUnimportantStuff();
+        } else {
+            drawStartScreen();
+        }
+    }
+
+    private void lookIfZombieGameObjectShouldBeReseted() {
+        timeSinceDeath++;
+        if (timeSinceDeath < 300) {
+            return;
+        }
+        game.resetEverything();
+        timeSinceDeath = 0;
     }
 
     private void clearScreen() {
@@ -96,13 +113,15 @@ public class UserInterface implements ApplicationListener {
         font.draw(batch, "Zombies killed: " + hud.zombiesKilled(), 470, 350);
     }
     
+    /**
+     * Method for debugging input
+     */
     private void drawUnimportantStuff() {
         BitmapFont font = new BitmapFont();
         font.setColor(Color.BLUE);
-        
-        font.draw(batch, "playerSprite.getRotation(): "+playerSprite.getRotation(), 200, 140);
-        font.draw(batch, "player.getX(): "+player.getX()+", player.getY(): "+player.getY(), 200, 110);
-        font.draw(batch, "mouse X: "+Gdx.input.getX()+", mouse Y: "+(720-Gdx.input.getY()), 200, 80);
+        font.draw(batch, "playerSprite.getRotation(): " + playerSprite.getRotation(), 200, 140);
+        font.draw(batch, "player.getX(): " + player.getX() + ", player.getY(): " + player.getY(), 200, 110);
+        font.draw(batch, "mouse X: " + Gdx.input.getX() + ", mouse Y: " + (720 - Gdx.input.getY()), 200, 80);
     }
 
     private void drawText() {
@@ -133,18 +152,15 @@ public class UserInterface implements ApplicationListener {
     private void drawZombie(Zombie zombie) {
         int textureId = zombie.getTextureAsInt();
         int bloodSprite = getZombieBloodSpriteId(zombie.getHp());
-        
         Texture texture = zombieTextures[textureId][bloodSprite];
-        
         int angle = zombie.getAngle();
-        
         int width = texture.getWidth();
         int height = texture.getHeight();
         
         batch.draw(texture, zombie.getX(), zombie.getY(),
                 width/2, height/2, width, height, 1, 1, angle,
                 0, 0, width, height, false, false);
-        
+        // Stuff that method above eats:
         // Texture texture, float x, float y,
         // float originX, float originY, float width, float height, float scaleX, float scaleY, float rotation,
         // int srcX, int srcY, int srcWidth, int srcHeight, boolean flipX, boolean flipY
@@ -157,11 +173,9 @@ public class UserInterface implements ApplicationListener {
             return 1;
         } else if (hp >= 25) {
             return 2;
-        } else {
-            return 3;
         }
+        return 3;
     }
-
 
     private void drawSprite(Sprite sprite, int x, int y) {
         batch.draw(sprite, x, y);
@@ -170,25 +184,17 @@ public class UserInterface implements ApplicationListener {
     private void drawBackground() {
         batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
-    
-    
-    
-    
+
+    private void drawStartScreen() {
+        batch.draw(startscreen, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+    }
     
     @Override
-    public void resize(int width, int height) {
-    }
-
+    public void resize(int width, int height) {}
     @Override
-    public void pause() {
-    }
-
+    public void pause() {}
     @Override
-    public void resume() {
-    }
-
+    public void resume() {}
     @Override
-    public void dispose() {
-    }
-
+    public void dispose() {}
 }

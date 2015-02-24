@@ -18,10 +18,10 @@ public class Map {
         this.width = width;
         this.height = height;
         this.divider = 16;
-        this.tiles = new Tile[width/divider][height/divider];
+        this.tiles = new Tile[width / divider][height / divider];
         for (int i = 0; i < (height / divider); i++) {
             for (int j = 0; j < (width / divider); j++) {
-                this.tiles[j][i] = new Tile(j,i);
+                this.tiles[j][i] = new Tile(j, i);
             }
         }
         makeNonMovableArea();
@@ -54,7 +54,7 @@ public class Map {
      * @return Tile which is on the desired location
      */
     public Tile getTile(int x, int y) {
-        if (areCoordinatesOutOfBounds(x, y)){
+        if (areCoordinatesOutOfBounds(x, y)) {
             return null;
         }
         return tiles[x][y];
@@ -64,7 +64,7 @@ public class Map {
      * Method checks if given coordinates are out of Map's bounds
      */
     private boolean areCoordinatesOutOfBounds(int x, int y) {
-        if (x < 0 || y < 0 ) {
+        if (x < 0 || y < 0) {
             return true;
         }
         if (x >= (width / divider) || y >= (height / divider)) {

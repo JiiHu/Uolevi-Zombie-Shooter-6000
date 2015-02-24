@@ -64,9 +64,9 @@ public class ActorController {
         if (angle < 0) {
             angle = angle * -1;
         } else {
-            angle = 180 + (180-angle);
+            angle = 180 + (180 - angle);
         }
-        return 360-angle;
+        return 360 - angle;
     }
     
     /**
@@ -98,7 +98,7 @@ public class ActorController {
         } else if (direction == Direction.RIGHT) {
             actor.moveRight();
         }
-     }
+    }
     
     private void revertMovement(Actor actor, Direction direction) {
         makeMovement(actor, oppositeDirection(direction));

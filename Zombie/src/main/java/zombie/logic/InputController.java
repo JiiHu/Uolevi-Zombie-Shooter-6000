@@ -28,7 +28,9 @@ public class InputController {
      * @param   direction   Direction to which the player should go
      */
     public void movePlayer(Direction direction) {
-        if (player.isDead()) return;
+        if (player.isDead()) {
+            return;
+        }
         actorController.moveActor(player, direction);
     }
     
@@ -40,7 +42,9 @@ public class InputController {
      * @param   y   Mouse's coordinate on the Y axis
      */
     public void mousePosition(int x, int y) {
-        if (player.isDead()) return;
+        if (player.isDead()) {
+            return;
+        }
         actorController.rotatePlayer(x, y);
     }
     
@@ -51,7 +55,9 @@ public class InputController {
      * @param   y   Mouse's position on the Y axis when the mouse is clicked
      */
     public void mouseClicked(int x, int y) {
-        if (player.isDead()) return;
+        if (player.isDead()) {
+            return;
+        }
         int angle = player.getAngle();
         bulletController.bulletShot(x, y, angle);
     }

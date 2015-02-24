@@ -14,8 +14,12 @@ public class LevelController {
     private ZombieAI zombieAI;
     
     public LevelController(ZombieAI zombieAI) {
-        level = new Level(0, 4);
         this.zombieAI = zombieAI;
+        makeLevel();
+    }
+
+    private void makeLevel() {
+        level = new Level(0, 4);
         newLevel();
     }
 
@@ -79,6 +83,13 @@ public class LevelController {
         if (isLevelOver()) {
             newLevel();
         }
+    }
+
+    /**
+     * Method will reset the Level
+     */
+    public void resetLevel() {
+        makeLevel();
     }
     
     

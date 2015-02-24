@@ -27,7 +27,7 @@ public class GameLauncher {
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
         configureUI(config);
         UserInterface ui = new UserInterface(game);
-	LwjglApplication app = new LwjglApplication(ui, config);
+        LwjglApplication app = new LwjglApplication(ui, config);
     }
     
     private void configureUI(LwjglApplicationConfiguration config) {
