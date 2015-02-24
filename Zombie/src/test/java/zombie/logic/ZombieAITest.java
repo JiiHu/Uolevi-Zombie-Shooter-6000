@@ -27,6 +27,13 @@ public class ZombieAITest {
     }
     
     @Test
+    public void resetZombiesWorks() {
+        zombieAI.addZombie();
+        zombieAI.resetZombies();
+        assertEquals(0, zombieAI.getZombies().size());
+    }
+    
+    @Test
     public void removeZombieRemovesZombieFromItsTile() {
         zombieAI.addZombie();
         Zombie z = zombieAI.getZombies().get(0);

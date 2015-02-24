@@ -30,6 +30,31 @@ public class ZombieGameTest {
     }
 
     @Test
+    public void resetEverythingResetsEverything() {
+        game.getZombieAI().addZombie();
+        Player p = game.getPlayer();
+        p.decreaseHp(50);
+        p.setX(50);
+        p.setY(50);
+        
+        game.resetEverything();
+        
+        assertEquals(0, game.getZombieAI().getZombies().size());
+        assertEquals(100, p.getHp());
+        assertEquals(500, p.getX());
+        assertEquals(500, p.getY());
+    }
+
+    @Test
+    public void hasStartedReturnsTrueWhenGameHasStarted() {
+        assertFalse(game.hasStarted());
+        for (int i = 0; i < 250; i++) {
+            game.hasStarted();
+        }
+        assertTrue(game.hasStarted());
+    }
+
+    @Test
     public void playReturnsTrueOnStart() {
         assertEquals(true, game.play());
     }

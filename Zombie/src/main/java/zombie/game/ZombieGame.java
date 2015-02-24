@@ -67,7 +67,7 @@ public class ZombieGame {
     /**
      * Method starts the game
      */
-    public void startGame() {
+    private void startGame() {
         this.hasStarted = true;
     }
     
