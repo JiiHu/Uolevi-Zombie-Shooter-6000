@@ -12,6 +12,7 @@ public class LevelController {
     
     private Level level;
     private ZombieAI zombieAI;
+    private int zombiesWaitingReleasing;
     
     public LevelController(ZombieAI zombieAI) {
         this.zombieAI = zombieAI;
@@ -33,12 +34,32 @@ public class LevelController {
     }
     
     /**
+     * Method will add Zombies to a queue waiting to be released
+     * 
+     * @param amount number of zombies to be added to the queue
+     */
+    public void addZombiesToReleasingQueue(int amount) {
+        this.zombiesWaitingReleasing += amount;
+    }
+    
+    /**
+     * Method will release zombie if there is any on the queue waiting to be released
+     */
+    public void releaseZombieFromQueue() {
+        if (zombiesWaitingReleasing == 0) {
+            return;
+        }
+        releaseZombie();
+    }
+    
+    /**
      * Method will release a zombie to the game
      */
     public void releaseZombie() {
         if (!unreleasedZombiesLeft()) {
             return;
         }
+        zombiesWaitingReleasing--;
         level.zombieReleased();
         zombieAI.addZombie();
     }

@@ -29,6 +29,7 @@ public class ZombieGame {
     private ZombieAI zombieAI;
     private InputController inputController;
     private LevelController levelController;
+    private MapController mapController;
     
     public ZombieGame(int width, int height) {
         this.width = width;
@@ -40,7 +41,7 @@ public class ZombieGame {
         this.player = new Player(width / 2, height / 2, "assets/player.png");
         
         Map map = new Map(width, height);
-        MapController mapController = new MapController(map);
+        this.mapController = new MapController(map);
         ActorController actorController = new ActorController(mapController, player);
         this.zombieAI = new ZombieAI(actorController, mapController, player, zombieTexturesAmount);
         this.levelController = new LevelController(zombieAI);
@@ -92,9 +93,10 @@ public class ZombieGame {
         if (timePlayed % 300 == 0) {
             player.increaseHp(2);
             int lvlNumber = hud.levelNumber();
-            for (int i = 0; i < lvlNumber; i++) {
-                levelController.releaseZombie();
-            }
+            levelController.addZombiesToReleasingQueue(lvlNumber);
+        }
+        if (timePlayed % 40 == 0) {
+            levelController.releaseZombieFromQueue();
         }
     }
     
@@ -153,6 +155,7 @@ public class ZombieGame {
         this.player.setAlive();
         this.player.setX(width / 2);
         this.player.setY(height / 2);
+        this.mapController.updateActorsTile(player);
     }
     
 }

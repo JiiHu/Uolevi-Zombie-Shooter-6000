@@ -76,6 +76,14 @@ public class LevelControllerTest {
     }
     
     @Test
+    public void addZombiesToReleasingQueueWorks() {
+        assertEquals(0, zombieAI.getZombies().size());
+        lc.addZombiesToReleasingQueue(1);
+        lc.releaseZombieFromQueue();
+        assertEquals(1, zombieAI.getZombies().size());
+    }
+    
+    @Test
     public void getLevelNumberWorks() {
         assertEquals(1, lc.getLevelNumber());
         lc.newLevel();

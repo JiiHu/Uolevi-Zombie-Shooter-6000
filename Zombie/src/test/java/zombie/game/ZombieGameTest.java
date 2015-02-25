@@ -84,7 +84,7 @@ public class ZombieGameTest {
 
     @Test
     public void playMovesZombies() {
-        for (int i = 0; i < 300; i++) {
+        for (int i = 0; i < 340; i++) {
             game.play();
         }
         Zombie z = game.getZombieAI().getZombies().get(0);
@@ -98,7 +98,7 @@ public class ZombieGameTest {
     @Test
     public void playWorks() {
         assertEquals(0, game.getZombieAI().getZombies().size());
-        for (int i = 0; i < 299; i++) {
+        for (int i = 0; i < 319; i++) {
             game.play();
         }
         assertEquals(0, game.getZombieAI().getZombies().size());

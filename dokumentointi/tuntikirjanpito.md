@@ -36,3 +36,6 @@
 
 ### Ti 24.2.
 - 4h Aloitusruutu, pelin viimeistelyä
+
+### Ke 25.2.
+- 2h Viimeistelyä
